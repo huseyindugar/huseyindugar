@@ -8,9 +8,13 @@
         :root {
             --anne: #c2185b;
             --baba: #1565c0;
-            --buyukanne: #e65100;
-            --buyukbaba: #2e7d32;
+            --anneanne: #e65100;
+            --babaanne: #2e7d32;
             --bos: #e0e0e0;
+            --loc-istanbul: #6a1b9a;
+            --loc-izmit:    #00838f;
+            --loc-akhisar:  #558b2f;
+            --loc-tatil:    #d84315;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,28 +39,42 @@
         .container { max-width: 1120px; margin: 0 auto; padding: 24px 16px; }
 
         .legend {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
             background: white;
             border-radius: 12px;
             padding: 14px 20px;
             box-shadow: 0 1px 6px rgba(0,0,0,0.08);
             margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .legend-title { font-size: 0.82em; color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .legend-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .legend-title {
+            font-size: 0.75em;
+            color: #999;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
 
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 7px;
-            font-size: 0.88em;
+            gap: 6px;
+            font-size: 0.85em;
             font-weight: 500;
         }
 
-        .legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+        .legend-dot { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; }
+        .legend-strip { width: 24px; height: 5px; border-radius: 3px; flex-shrink: 0; }
 
         .summary {
             display: grid;
@@ -75,8 +93,8 @@
         }
 
         .summary-card .count { font-size: 2em; font-weight: 700; line-height: 1; }
-        .summary-card .label { font-size: 0.78em; color: #555; margin-top: 4px; font-weight: 500; }
-        .summary-card .sublabel { font-size: 0.7em; color: #999; margin-top: 2px; }
+        .summary-card .label { font-size: 0.75em; color: #555; margin-top: 4px; font-weight: 500; }
+        .summary-card .sublabel { font-size: 0.68em; color: #999; margin-top: 2px; }
 
         .actions-bar {
             display: flex;
@@ -136,47 +154,16 @@
             gap: 18px;
         }
 
-        .month-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 1px 6px rgba(0,0,0,0.08);
-        }
+        .month-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
 
-        .month-header {
-            background: #4a6fa5;
-            color: white;
-            text-align: center;
-            padding: 11px 12px;
-            font-weight: 600;
-            font-size: 1em;
-        }
+        .month-header { background: #4a6fa5; color: white; text-align: center; padding: 11px 12px; font-weight: 600; font-size: 1em; }
 
-        .weekdays {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            background: #f5f6f8;
-            border-bottom: 1px solid #eee;
-        }
+        .weekdays { display: grid; grid-template-columns: repeat(7, 1fr); background: #f5f6f8; border-bottom: 1px solid #eee; }
 
-        .weekday {
-            text-align: center;
-            padding: 7px 2px;
-            font-size: 0.68em;
-            font-weight: 700;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
+        .weekday { text-align: center; padding: 7px 2px; font-size: 0.68em; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.3px; }
         .weekday.sat, .weekday.sun { color: #b71c6e; }
 
-        .days-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 2px;
-            padding: 6px;
-        }
+        .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; padding: 6px; }
 
         .day {
             aspect-ratio: 1;
@@ -189,20 +176,19 @@
             font-weight: 500;
             position: relative;
             min-height: 38px;
-            transition: transform 0.12s, box-shadow 0.12s;
+            transition: transform 0.12s;
             user-select: none;
             -webkit-user-select: none;
+            overflow: hidden;
         }
 
         .day.clickable { cursor: pointer; }
-        .day.clickable:active { transform: scale(0.93); }
-
+        .day.clickable:active { transform: scale(0.92); }
         .day.empty { background: transparent; cursor: default; }
         .day.out-of-range { background: #fafafa; color: #ccc; cursor: default; }
         .day.in-range { background: var(--bos); color: #555; }
         .day.in-range.weekend { color: #b71c6e; }
         .day.assigned { color: white !important; }
-
         .day.today { outline: 2px solid #4a6fa5; outline-offset: 1px; }
 
         .day.range-anchor {
@@ -212,12 +198,21 @@
         }
 
         @keyframes anchorPulse {
-            0%, 100% { outline-color: #f57c00; box-shadow: 0 0 0 0 rgba(245,124,0,0.3); }
-            50% { outline-color: #c2185b; box-shadow: 0 0 0 6px rgba(245,124,0,0); }
+            0%, 100% { outline-color: #f57c00; }
+            50%       { outline-color: #c2185b; }
         }
 
-        .day-num { font-size: 0.95em; line-height: 1; }
-        .day-init { font-size: 0.58em; margin-top: 2px; opacity: 0.95; line-height: 1.2; text-align: center; }
+        .day-num  { font-size: 0.95em; line-height: 1; }
+        .day-init { font-size: 0.57em; margin-top: 1px; opacity: 0.95; line-height: 1.2; text-align: center; }
+
+        .loc-strip {
+            position: absolute;
+            bottom: 2px;
+            left: 3px;
+            right: 3px;
+            height: 3px;
+            border-radius: 2px;
+        }
 
         .note-dot {
             position: absolute;
@@ -247,50 +242,27 @@
         .popup {
             background: white;
             border-radius: 16px;
-            padding: 22px 22px 18px;
-            width: 340px;
+            padding: 20px 20px 16px;
+            width: 360px;
             max-width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
             box-shadow: 0 20px 60px rgba(0,0,0,0.28);
         }
 
-        .popup-title {
-            font-size: 1em;
-            font-weight: 700;
-            color: #2c4a7c;
-            line-height: 1.3;
-        }
+        .popup-title { font-size: 1em; font-weight: 700; color: #2c4a7c; line-height: 1.3; }
+        .popup-subtitle { font-size: 0.8em; color: #f57c00; font-weight: 600; margin-top: 2px; margin-bottom: 14px; min-height: 1.1em; }
 
-        .popup-subtitle {
-            font-size: 0.8em;
-            color: #f57c00;
-            font-weight: 600;
-            margin-top: 2px;
-            margin-bottom: 14px;
-            min-height: 1em;
-        }
+        .section-label { font-size: 0.72em; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
 
-        .section-label {
-            font-size: 0.72em;
-            color: #999;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-
-        .cg-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
+        .cg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 10px; }
 
         .cg-btn {
-            padding: 14px 10px 12px;
+            padding: 13px 8px 11px;
             border: 2.5px solid transparent;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 0.9em;
+            font-size: 0.88em;
             font-weight: 700;
             color: white;
             position: relative;
@@ -298,70 +270,46 @@
             text-align: center;
         }
 
-        .cg-btn.anne      { background: var(--anne); }
-        .cg-btn.baba      { background: var(--baba); }
-        .cg-btn.buyukanne { background: var(--buyukanne); }
-        .cg-btn.buyukbaba { background: var(--buyukbaba); }
-
-        .cg-btn:not(.selected) { opacity: 0.4; }
-        .cg-btn.selected { opacity: 1; border-color: rgba(0,0,0,0.5); }
-
-        .cg-check {
-            position: absolute;
-            top: 5px;
-            right: 8px;
-            font-size: 0.7em;
-            display: none;
-        }
-
+        .cg-btn.anne     { background: var(--anne); }
+        .cg-btn.baba     { background: var(--baba); }
+        .cg-btn.anneanne { background: var(--anneanne); }
+        .cg-btn.babaanne { background: var(--babaanne); }
+        .cg-btn:not(.selected) { opacity: 0.38; }
+        .cg-btn.selected { opacity: 1; border-color: rgba(0,0,0,0.45); }
+        .cg-check { position: absolute; top: 4px; right: 7px; font-size: 0.68em; display: none; }
         .cg-btn.selected .cg-check { display: block; }
-        .cg-btn:active { transform: scale(0.95); }
+        .cg-btn:active { transform: scale(0.94); }
 
-        .clear-row { margin-bottom: 12px; }
+        .loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 10px; }
 
-        .clear-row button {
-            width: 100%;
-            padding: 8px;
-            background: #f5f5f5;
-            border: 1.5px solid #e0e0e0;
-            border-radius: 8px;
+        .loc-btn {
+            padding: 11px 8px;
+            border-width: 2px;
+            border-style: solid;
+            border-radius: 9px;
             cursor: pointer;
-            font-size: 0.8em;
-            color: #777;
+            font-size: 0.85em;
             font-weight: 600;
+            transition: background 0.12s, color 0.12s, opacity 0.12s;
+            text-align: center;
         }
 
+        .loc-btn:not(.selected) { background: white; opacity: 0.55; }
+        .loc-btn.selected { color: white !important; opacity: 1; }
+        .loc-btn:active { transform: scale(0.94); }
+
+        .divider { border: none; border-top: 1px solid #f0f0f0; margin: 10px 0; }
+
+        .clear-row { margin-bottom: 10px; }
+        .clear-row button { width: 100%; padding: 8px; background: #f5f5f5; border: 1.5px solid #e0e0e0; border-radius: 8px; cursor: pointer; font-size: 0.78em; color: #888; font-weight: 600; }
         .clear-row button:active { background: #eee; }
 
-        .field-label {
-            font-size: 0.72em;
-            color: #999;
-            margin-bottom: 5px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .field-label { font-size: 0.72em; color: #999; margin-bottom: 5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .note-input {
-            width: 100%;
-            padding: 8px 11px;
-            border: 1.5px solid #ddd;
-            border-radius: 8px;
-            font-size: 0.88em;
-            resize: vertical;
-            min-height: 52px;
-            font-family: inherit;
-            color: #333;
-        }
-
+        .note-input { width: 100%; padding: 8px 11px; border: 1.5px solid #ddd; border-radius: 8px; font-size: 0.88em; resize: vertical; min-height: 48px; font-family: inherit; color: #333; }
         .note-input:focus { outline: none; border-color: #4a6fa5; }
 
-        .popup-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 14px;
-        }
-
+        .popup-actions { display: flex; gap: 8px; margin-top: 14px; }
         .popup-actions .btn { flex: 1; padding: 11px; font-size: 0.9em; }
 
         @media (max-width: 560px) {
@@ -369,7 +317,6 @@
             .summary-card:last-child { grid-column: 1 / -1; }
             .months-grid { grid-template-columns: 1fr; }
             header h1 { font-size: 1.35em; }
-            .actions-bar { gap: 8px; }
             .btn { padding: 9px 12px; font-size: 0.82em; }
         }
 
@@ -384,19 +331,28 @@
 
 <header>
     <h1>Cocuk Bakim Takvimi</h1>
-    <p>29 Haziran - 7 Eylul 2026 &nbsp;|&nbsp; Anaokulu Mezuniyet Tatili</p>
+    <p>29 Haziran - 6 Eylul 2026 &nbsp;|&nbsp; Anaokulu Mezuniyet Tatili</p>
 </header>
 
 <div class="container">
 
     <div class="legend">
-        <span class="legend-title">Bakicilar:</span>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--anne)"></div>Anne</div>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--baba)"></div>Baba</div>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--buyukanne)"></div>Buyukanne</div>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--buyukbaba)"></div>Buyukbaba</div>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--bos)"></div>Atanmadi</div>
-        <span style="margin-left:auto;font-size:0.75em;color:#aaa;">Birden fazla bakici secebilirsin</span>
+        <div class="legend-row">
+            <span class="legend-title">Bakicilar:</span>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--anne)"></div>Anne</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--baba)"></div>Baba</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--anneanne)"></div>Anneanne</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--babaanne)"></div>Babaanne</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--bos)"></div>Atanmadi</div>
+        </div>
+        <div class="legend-row">
+            <span class="legend-title">Yer:</span>
+            <div class="legend-item"><div class="legend-strip" style="background:var(--loc-istanbul)"></div>Istanbul</div>
+            <div class="legend-item"><div class="legend-strip" style="background:var(--loc-izmit)"></div>Izmit</div>
+            <div class="legend-item"><div class="legend-strip" style="background:var(--loc-akhisar)"></div>Akhisar</div>
+            <div class="legend-item"><div class="legend-strip" style="background:var(--loc-tatil)"></div>Tatil</div>
+            <span style="margin-left:auto;font-size:0.75em;color:#bbb;">Renkli serit = yer</span>
+        </div>
     </div>
 
     <div class="summary" id="summary"></div>
@@ -422,9 +378,11 @@
         <div class="popup-subtitle" id="popup-subtitle"></div>
         <div class="section-label">Bakicilar — birden fazla secebilirsin</div>
         <div class="cg-grid" id="cg-grid"></div>
-        <div class="clear-row">
-            <button onclick="clearAllCGs()">Hepsini Kaldir</button>
-        </div>
+        <hr class="divider">
+        <div class="section-label">Bakilacak Yer</div>
+        <div class="loc-grid" id="loc-grid"></div>
+        <hr class="divider">
+        <div class="clear-row"><button onclick="clearAll()">Hepsini Kaldir (Atanmadi + Yer Yok)</button></div>
         <div class="field-label">Not (istege bagli)</div>
         <textarea class="note-input" id="popup-note" placeholder="Bu gun / donem icin not..."></textarea>
         <div class="popup-actions">
@@ -436,27 +394,30 @@
 
 <script>
     const RANGE_START = new Date(2026, 5, 29);
-    const RANGE_END   = new Date(2026, 8, 7);
+    const RANGE_END   = new Date(2026, 8, 6);
 
     const CAREGIVERS = [
-        { id: 'anne',      label: 'Anne',      init: 'A'  },
-        { id: 'baba',      label: 'Baba',      init: 'B'  },
-        { id: 'buyukanne', label: 'Buyukanne', init: 'BA' },
-        { id: 'buyukbaba', label: 'Buyukbaba', init: 'BB' },
+        { id: 'anne',     label: 'Anne',     init: 'A'  },
+        { id: 'baba',     label: 'Baba',     init: 'B'  },
+        { id: 'anneanne', label: 'Anneanne', init: 'AA' },
+        { id: 'babaanne', label: 'Babaanne', init: 'BA' },
     ];
 
-    const TR_MONTHS = ['Ocak','Subat','Mart','Nisan','Mayis','Haziran',
-                       'Temmuz','Agustos','Eylul','Ekim','Kasim','Aralik'];
-    const TR_DAYS  = ['Pzt','Sal','Car','Per','Cum','Cmt','Paz'];
+    const LOCATIONS = [
+        { id: 'istanbul', label: 'Istanbul', abbr: 'IST', color: '#6a1b9a' },
+        { id: 'izmit',    label: 'Izmit',    abbr: 'IZM', color: '#00838f' },
+        { id: 'akhisar',  label: 'Akhisar',  abbr: 'AKH', color: '#558b2f' },
+        { id: 'tatil',    label: 'Tatil',    abbr: 'TAT', color: '#d84315' },
+    ];
 
-    let data       = {};
-    let editStart  = null;
-    let editEnd    = null;
-    let chosenCGs  = new Set();
-    let rangeMode  = false;
-    let rangeAnchor = null;
+    const TR_MONTHS = ['Ocak','Subat','Mart','Nisan','Mayis','Haziran','Temmuz','Agustos','Eylul','Ekim','Kasim','Aralik'];
+    const TR_DAYS   = ['Pzt','Sal','Car','Per','Cum','Cmt','Paz'];
 
-    const STORAGE_KEY = 'childcare-v3-2026';
+    let data = {}, editStart = null, editEnd = null;
+    let chosenCGs = new Set(), chosenLoc = null;
+    let rangeMode = false, rangeAnchor = null;
+
+    const STORAGE_KEY = 'childcare-v4-2026';
 
     function key(d) { return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`; }
     function inRange(d) { return d >= RANGE_START && d <= RANGE_END; }
@@ -466,20 +427,18 @@
         try {
             const raw = localStorage.getItem(STORAGE_KEY);
             if (raw) { data = JSON.parse(raw); return; }
-            for (const oldKey of ['childcare-takvim-2026-v2', 'childcare-takvim-2026']) {
+            for (const oldKey of ['childcare-v3-2026','childcare-takvim-2026-v2','childcare-takvim-2026']) {
                 const old = localStorage.getItem(oldKey);
                 if (old) {
-                    const oldData = JSON.parse(old);
+                    const od = JSON.parse(old);
                     data = {};
-                    Object.keys(oldData).forEach(k => {
-                        const e = oldData[k];
-                        data[k] = {
-                            caregivers: e.caregivers || (e.caregiver ? [e.caregiver] : []),
-                            note: e.note || ''
-                        };
+                    const cgMap = { buyukanne: 'anneanne', buyukbaba: 'babaanne' };
+                    Object.keys(od).forEach(k => {
+                        const e = od[k];
+                        const cgs = (e.caregivers || (e.caregiver ? [e.caregiver] : [])).map(id => cgMap[id] || id);
+                        data[k] = { caregivers: cgs, location: e.location || null, note: e.note || '' };
                     });
-                    save();
-                    return;
+                    save(); return;
                 }
             }
             data = {};
@@ -488,38 +447,23 @@
 
     function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
 
-    function toggleRangeMode() {
-        rangeMode = !rangeMode;
-        rangeAnchor = null;
-        updateRangeUI();
-        render();
-    }
-
-    function cancelRangeMode() {
-        rangeMode = false;
-        rangeAnchor = null;
-        updateRangeUI();
-        render();
-    }
+    function toggleRangeMode() { rangeMode = !rangeMode; rangeAnchor = null; updateRangeUI(); render(); }
+    function cancelRangeMode() { rangeMode = false; rangeAnchor = null; updateRangeUI(); render(); }
 
     function updateRangeUI() {
-        const btn = document.getElementById('range-btn');
-        const bar = document.getElementById('range-bar');
+        const btn = document.getElementById('range-btn'), bar = document.getElementById('range-bar');
         if (rangeMode) {
-            btn.className = 'btn btn-range-active';
-            btn.textContent = 'Aralik Iptal';
+            btn.className = 'btn btn-range-active'; btn.textContent = 'Aralik Iptal';
             bar.classList.add('active');
             document.getElementById('range-bar-text').textContent = 'Baslangic gununu secin';
         } else {
-            btn.className = 'btn btn-neutral';
-            btn.textContent = 'Aralik Sec';
+            btn.className = 'btn btn-neutral'; btn.textContent = 'Aralik Sec';
             bar.classList.remove('active');
         }
     }
 
     function handleDayClick(date) {
         if (!rangeMode) { openPopup(date, date); return; }
-
         if (rangeAnchor === null) {
             rangeAnchor = date;
             document.getElementById('range-bar-text').textContent =
@@ -528,72 +472,67 @@
         } else {
             const start = rangeAnchor <= date ? rangeAnchor : date;
             const end   = rangeAnchor <= date ? date : rangeAnchor;
-            rangeAnchor = null;
-            rangeMode   = false;
-            updateRangeUI();
-            render();
+            rangeAnchor = null; rangeMode = false; updateRangeUI(); render();
             openPopup(start, end);
         }
     }
 
     function openPopup(start, end) {
-        editStart = start;
-        editEnd   = end;
-        chosenCGs = new Set();
-
+        editStart = start; editEnd = end; chosenCGs = new Set(); chosenLoc = null;
         const isSingle = start.toDateString() === end.toDateString();
-
         if (isSingle) {
             const dowIdx = start.getDay() === 0 ? 6 : start.getDay() - 1;
-            document.getElementById('popup-title').textContent =
-                `${TR_DAYS[dowIdx]}, ${start.getDate()} ${TR_MONTHS[start.getMonth()]} ${start.getFullYear()}`;
+            document.getElementById('popup-title').textContent = `${TR_DAYS[dowIdx]}, ${start.getDate()} ${TR_MONTHS[start.getMonth()]} ${start.getFullYear()}`;
             document.getElementById('popup-subtitle').textContent = '';
             const entry = data[key(start)] || {};
             (entry.caregivers || []).forEach(id => chosenCGs.add(id));
+            chosenLoc = entry.location || null;
             document.getElementById('popup-note').value = entry.note || '';
         } else {
             let days = 0, d = new Date(start);
             while (d <= end) { days++; d.setDate(d.getDate() + 1); }
-            document.getElementById('popup-title').textContent =
-                `${start.getDate()} ${TR_MONTHS[start.getMonth()]} — ${end.getDate()} ${TR_MONTHS[end.getMonth()]} ${end.getFullYear()}`;
+            document.getElementById('popup-title').textContent = `${start.getDate()} ${TR_MONTHS[start.getMonth()]} — ${end.getDate()} ${TR_MONTHS[end.getMonth()]} ${end.getFullYear()}`;
             document.getElementById('popup-subtitle').textContent = `${days} gun secildi — tum gunlere atanacak`;
             document.getElementById('popup-note').value = '';
         }
-
-        buildCGButtons();
+        buildCGButtons(); buildLocButtons();
         document.getElementById('overlay').classList.add('active');
     }
 
     function buildCGButtons() {
-        const grid = document.getElementById('cg-grid');
-        grid.innerHTML = '';
+        const grid = document.getElementById('cg-grid'); grid.innerHTML = '';
         CAREGIVERS.forEach(cg => {
             const btn = document.createElement('button');
             btn.className = `cg-btn ${cg.id}${chosenCGs.has(cg.id) ? ' selected' : ''}`;
             btn.innerHTML = `${cg.label}<span class="cg-check">&#10003;</span>`;
             btn.addEventListener('click', () => {
-                if (chosenCGs.has(cg.id)) {
-                    chosenCGs.delete(cg.id);
-                    btn.classList.remove('selected');
-                } else {
-                    chosenCGs.add(cg.id);
-                    btn.classList.add('selected');
-                }
+                if (chosenCGs.has(cg.id)) { chosenCGs.delete(cg.id); btn.classList.remove('selected'); }
+                else { chosenCGs.add(cg.id); btn.classList.add('selected'); }
+                btn.querySelector('.cg-check').style.display = chosenCGs.has(cg.id) ? 'block' : 'none';
             });
             grid.appendChild(btn);
         });
     }
 
-    function clearAllCGs() { chosenCGs.clear(); buildCGButtons(); }
-
-    function closePopup() {
-        document.getElementById('overlay').classList.remove('active');
-        editStart = null; editEnd = null;
+    function buildLocButtons() {
+        const grid = document.getElementById('loc-grid'); grid.innerHTML = '';
+        LOCATIONS.forEach(loc => {
+            const btn = document.createElement('button');
+            const isSel = chosenLoc === loc.id;
+            btn.className = `loc-btn${isSel ? ' selected' : ''}`;
+            btn.style.borderColor = loc.color;
+            btn.style.color = isSel ? 'white' : loc.color;
+            btn.style.background = isSel ? loc.color : 'white';
+            btn.textContent = loc.label;
+            btn.addEventListener('click', () => { chosenLoc = (chosenLoc === loc.id) ? null : loc.id; buildLocButtons(); });
+            grid.appendChild(btn);
+        });
     }
 
-    function overlayClick(e) {
-        if (e.target === document.getElementById('overlay')) closePopup();
-    }
+    function clearAll() { chosenCGs.clear(); chosenLoc = null; buildCGButtons(); buildLocButtons(); }
+
+    function closePopup() { document.getElementById('overlay').classList.remove('active'); editStart = null; editEnd = null; }
+    function overlayClick(e) { if (e.target === document.getElementById('overlay')) closePopup(); }
 
     function saveAssignment() {
         if (!editStart) return;
@@ -602,7 +541,7 @@
         let d = new Date(editStart);
         while (d <= editEnd) {
             const k = key(d);
-            if (caregivers.length > 0 || note) data[k] = { caregivers, note };
+            if (caregivers.length > 0 || chosenLoc || note) data[k] = { caregivers, location: chosenLoc, note };
             else delete data[k];
             d.setDate(d.getDate() + 1);
         }
@@ -616,41 +555,27 @@
         let d = new Date(RANGE_START);
         while (d <= RANGE_END) {
             total++;
-            const cgs = (data[key(d)] || {}).caregivers || [];
-            if (cgs.length > 0) cgs.forEach(id => { if (counts[id] !== undefined) counts[id]++; });
+            const entry = data[key(d)] || {};
+            const cgs = entry.caregivers || [];
+            if (cgs.length > 0 || entry.location) { cgs.forEach(id => { if (counts[id] !== undefined) counts[id]++; }); if (cgs.length === 0) unassigned++; }
             else unassigned++;
             d.setDate(d.getDate() + 1);
         }
-        const colors = { anne:'var(--anne)', baba:'var(--baba)', buyukanne:'var(--buyukanne)', buyukbaba:'var(--buyukbaba)' };
-        let html = CAREGIVERS.map(cg =>
-            `<div class="summary-card" style="border-color:${colors[cg.id]}">
-                <div class="count" style="color:${colors[cg.id]}">${counts[cg.id]}</div>
-                <div class="label">${cg.label}</div>
-                <div class="sublabel">gun</div>
-             </div>`
-        ).join('');
-        html += `<div class="summary-card" style="border-color:#bbb">
-            <div class="count" style="color:#aaa">${unassigned}</div>
-            <div class="label">Atanmadi</div>
-            <div class="sublabel">/ ${total} gun</div>
-        </div>`;
+        const colors = { anne:'var(--anne)', baba:'var(--baba)', anneanne:'var(--anneanne)', babaanne:'var(--babaanne)' };
+        let html = CAREGIVERS.map(cg => `<div class="summary-card" style="border-color:${colors[cg.id]}"><div class="count" style="color:${colors[cg.id]}">${counts[cg.id]}</div><div class="label">${cg.label}</div><div class="sublabel">gun</div></div>`).join('');
+        html += `<div class="summary-card" style="border-color:#bbb"><div class="count" style="color:#aaa">${unassigned}</div><div class="label">Atanmadi</div><div class="sublabel">/ ${total} gun</div></div>`;
         document.getElementById('summary').innerHTML = html;
     }
 
     function getBackground(caregivers) {
         if (caregivers.length === 1) return `var(--${caregivers[0]})`;
-        const pct = 100 / caregivers.length;
-        const stops = [];
-        caregivers.forEach((cg, i) => {
-            stops.push(`var(--${cg}) ${i * pct}%`);
-            stops.push(`var(--${cg}) ${(i + 1) * pct}%`);
-        });
+        const pct = 100 / caregivers.length, stops = [];
+        caregivers.forEach((cg, i) => { stops.push(`var(--${cg}) ${i*pct}%`); stops.push(`var(--${cg}) ${(i+1)*pct}%`); });
         return `linear-gradient(135deg, ${stops.join(', ')})`;
     }
 
     function renderCalendar() {
-        const cal = document.getElementById('calendar');
-        cal.innerHTML = '';
+        const cal = document.getElementById('calendar'); cal.innerHTML = '';
         const months = [];
         let cur = new Date(RANGE_START.getFullYear(), RANGE_START.getMonth(), 1);
         const endM = new Date(RANGE_END.getFullYear(), RANGE_END.getMonth(), 1);
@@ -659,33 +584,17 @@
     }
 
     function buildMonth(year, month) {
-        const card = document.createElement('div');
-        card.className = 'month-card';
-        const hdr = document.createElement('div');
-        hdr.className = 'month-header';
-        hdr.textContent = `${TR_MONTHS[month]} ${year}`;
-        card.appendChild(hdr);
-        const wds = document.createElement('div');
-        wds.className = 'weekdays';
-        TR_DAYS.forEach((d, i) => {
-            const wd = document.createElement('div');
-            wd.className = 'weekday' + (i === 5 ? ' sat' : i === 6 ? ' sun' : '');
-            wd.textContent = d;
-            wds.appendChild(wd);
-        });
+        const card = document.createElement('div'); card.className = 'month-card';
+        const hdr = document.createElement('div'); hdr.className = 'month-header'; hdr.textContent = `${TR_MONTHS[month]} ${year}`; card.appendChild(hdr);
+        const wds = document.createElement('div'); wds.className = 'weekdays';
+        TR_DAYS.forEach((d, i) => { const wd = document.createElement('div'); wd.className = 'weekday' + (i===5?' sat':i===6?' sun':''); wd.textContent = d; wds.appendChild(wd); });
         card.appendChild(wds);
-        const grid = document.createElement('div');
-        grid.className = 'days-grid';
-        let startDow = new Date(year, month, 1).getDay();
-        startDow = startDow === 0 ? 6 : startDow - 1;
-        for (let i = 0; i < startDow; i++) {
-            const e = document.createElement('div'); e.className = 'day empty'; grid.appendChild(e);
-        }
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const today = new Date();
+        const grid = document.createElement('div'); grid.className = 'days-grid';
+        let startDow = new Date(year, month, 1).getDay(); startDow = startDow === 0 ? 6 : startDow - 1;
+        for (let i = 0; i < startDow; i++) { const e = document.createElement('div'); e.className = 'day empty'; grid.appendChild(e); }
+        const daysInMonth = new Date(year, month+1, 0).getDate(), today = new Date();
         for (let d = 1; d <= daysInMonth; d++) {
-            const date = new Date(year, month, d);
-            const cell = document.createElement('div');
+            const date = new Date(year, month, d), cell = document.createElement('div');
             cell.className = 'day';
             if (!inRange(date)) {
                 cell.classList.add('out-of-range');
@@ -695,14 +604,18 @@
                 if (isWeekend(date)) cell.classList.add('weekend');
                 const entry = data[key(date)] || {};
                 const caregivers = entry.caregivers || [];
+                const locObj = entry.location ? LOCATIONS.find(l => l.id === entry.location) : null;
                 if (caregivers.length > 0) {
                     cell.classList.add('assigned');
                     cell.style.background = getBackground(caregivers);
                     const inits = caregivers.map(id => CAREGIVERS.find(c => c.id === id)?.init || '').join('+');
                     cell.innerHTML = `<span class="day-num">${d}</span><span class="day-init">${inits}</span>`;
+                } else if (locObj) {
+                    cell.innerHTML = `<span class="day-num">${d}</span><span class="day-init" style="color:${locObj.color}">${locObj.abbr}</span>`;
                 } else {
                     cell.innerHTML = `<span class="day-num">${d}</span>`;
                 }
+                if (locObj) cell.innerHTML += `<span class="loc-strip" style="background:${locObj.color}"></span>`;
                 if (entry.note) cell.innerHTML += '<span class="note-dot"></span>';
                 if (rangeAnchor && date.toDateString() === rangeAnchor.toDateString()) cell.classList.add('range-anchor');
                 cell.addEventListener('click', () => handleDayClick(date));
@@ -714,20 +627,19 @@
         return card;
     }
 
-    function confirmClear() {
-        if (!confirm('Tum atamalar silinecek. Emin misiniz?')) return;
-        data = {}; save(); render();
-    }
+    function confirmClear() { if (!confirm('Tum atamalar silinecek. Emin misiniz?')) return; data = {}; save(); render(); }
 
     function exportText() {
-        const lines = ['Cocuk Bakim Takvimi (29 Haziran - 7 Eylul 2026)', ''];
+        const lines = ['Cocuk Bakim Takvimi (29 Haziran - 6 Eylul 2026)', ''];
         let d = new Date(RANGE_START);
         while (d <= RANGE_END) {
             const entry = data[key(d)] || {};
             const cgs = entry.caregivers || [];
-            if (cgs.length > 0 || entry.note) {
+            const locObj = entry.location ? LOCATIONS.find(l => l.id === entry.location) : null;
+            if (cgs.length > 0 || locObj || entry.note) {
                 const names = cgs.map(id => CAREGIVERS.find(c => c.id === id)?.label || '').join(' + ');
-                let line = `${d.getDate()} ${TR_MONTHS[d.getMonth()]}: ${names || '?'}`;
+                let line = `${d.getDate()} ${TR_MONTHS[d.getMonth()]}: ${names || '-'}`;
+                if (locObj) line += `  [${locObj.label}]`;
                 if (entry.note) line += `  (${entry.note})`;
                 lines.push(line);
             }
@@ -735,23 +647,13 @@
         }
         navigator.clipboard.writeText(lines.join('\n'))
             .then(() => alert('Takvim panoya kopyalandi!'))
-            .catch(() => {
-                const ta = document.createElement('textarea');
-                ta.value = lines.join('\n');
-                document.body.appendChild(ta); ta.select();
-                document.execCommand('copy'); document.body.removeChild(ta);
-                alert('Takvim panoya kopyalandi!');
-            });
+            .catch(() => { const ta = document.createElement('textarea'); ta.value = lines.join('\n'); document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); alert('Takvim panoya kopyalandi!'); });
     }
 
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') { closePopup(); if (rangeMode) cancelRangeMode(); }
-    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePopup(); if (rangeMode) cancelRangeMode(); } });
 
     function render() { renderSummary(); renderCalendar(); }
-
-    load();
-    render();
+    load(); render();
 </script>
 </body>
 </html>
