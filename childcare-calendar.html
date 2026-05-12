@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocuk Bakim Takvimi 2026</title>
+    <style>
+        :root {
+            --anne: #c2185b;
+            --baba: #1565c0;
+            --buyukanne: #e65100;
+            --buyukbaba: #2e7d32;
+            --bos: #e0e0e0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a6fa5 0%, #2c4a7c 100%);
+            color: white;
+            padding: 28px 24px 20px;
+            text-align: center;
+        }
+
+        header h1 { font-size: 1.7em; margin-bottom: 6px; letter-spacing: -0.5px; }
+        header p { opacity: 0.8; font-size: 0.92em; }
+
+        .container { max-width: 1120px; margin: 0 auto; padding: 24px 16px; }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            background: white;
+            border-radius: 12px;
+            padding: 14px 20px;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+
+        .legend-title { font-size: 0.82em; color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.88em;
+            font-weight: 500;
+        }
+
+        .legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+
+        /* Summary */
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 10px;
+            padding: 14px 10px;
+            text-align: center;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+            border-top: 3px solid transparent;
+        }
+
+        .summary-card .count { font-size: 2em; font-weight: 700; line-height: 1; }
+        .summary-card .label { font-size: 0.78em; color: #555; margin-top: 4px; font-weight: 500; }
+        .summary-card .sublabel { font-size: 0.7em; color: #999; margin-top: 2px; }
+
+        /* Actions */
+        .actions-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 9px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: opacity 0.15s, transform 0.1s;
+        }
+
+        .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn:active { transform: translateY(0); }
+        .btn-primary { background: #4a6fa5; color: white; }
+        .btn-danger { background: #ef5350; color: white; }
+        .btn-neutral { background: white; color: #444; box-shadow: 0 1px 4px rgba(0,0,0,0.12); }
+
+        /* Calendar grid */
+        .months-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 18px;
+        }
+
+        .month-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+        }
+
+        .month-header {
+            background: #4a6fa5;
+            color: white;
+            text-align: center;
+            padding: 11px 12px;
+            font-weight: 600;
+            font-size: 1em;
+            letter-spacing: 0.3px;
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background: #f5f6f8;
+            border-bottom: 1px solid #eee;
+        }
+
+        .weekday {
+            text-align: center;
+            padding: 7px 2px;
+            font-size: 0.68em;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .weekday.sat, .weekday.sun { color: #b71c6e; }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            padding: 6px;
+        }
+
+        .day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 0.82em;
+            font-weight: 500;
+            position: relative;
+            min-height: 38px;
+            transition: transform 0.12s, box-shadow 0.12s;
+            user-select: none;
+        }
+
+        .day.clickable { cursor: pointer; }
+
+        .day.clickable:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+            z-index: 5;
+        }
+
+        .day.empty { background: transparent; cursor: default; }
+        .day.out-of-range { background: #fafafa; color: #ccc; cursor: default; }
+        .day.in-range { background: var(--bos); color: #555; }
+        .day.in-range.weekend { color: #b71c6e; }
+
+        .day.anne    { background: var(--anne);      color: white; }
+        .day.baba    { background: var(--baba);      color: white; }
+        .day.buyukanne { background: var(--buyukanne); color: white; }
+        .day.buyukbaba { background: var(--buyukbaba); color: white; }
+
+        .day.today { outline: 2px solid #4a6fa5; outline-offset: 1px; }
+
+        .day-num { font-size: 0.95em; line-height: 1; }
+        .day-init { font-size: 0.6em; margin-top: 2px; opacity: 0.9; letter-spacing: 0.2px; }
+
+        .note-dot {
+            position: absolute;
+            top: 3px;
+            right: 4px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.85);
+        }
+
+        .day.in-range .note-dot { background: rgba(0,0,0,0.28); }
+
+        /* Popup */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overlay.active { display: flex; }
+
+        .popup {
+            background: white;
+            border-radius: 16px;
+            padding: 22px 24px;
+            width: 320px;
+            max-width: 94vw;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+        }
+
+        .popup-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #2c4a7c;
+        }
+
+        .cg-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cg-btn {
+            padding: 13px 8px;
+            border: 2px solid transparent;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 0.88em;
+            font-weight: 600;
+            color: white;
+            transition: transform 0.1s, box-shadow 0.1s;
+            background: var(--bos);
+            color: #444;
+        }
+
+        .cg-btn.anne        { background: var(--anne);      color: white; }
+        .cg-btn.baba        { background: var(--baba);      color: white; }
+        .cg-btn.buyukanne   { background: var(--buyukanne); color: white; }
+        .cg-btn.buyukbaba   { background: var(--buyukbaba); color: white; }
+
+        .cg-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.18); }
+
+        .cg-btn.selected {
+            outline: 3px solid #222;
+            outline-offset: 1px;
+        }
+
+        .cg-btn.bos-btn { grid-column: 1 / -1; }
+
+        .field-label { font-size: 0.78em; color: #777; margin-bottom: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+
+        .note-input {
+            width: 100%;
+            padding: 8px 11px;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.88em;
+            resize: vertical;
+            min-height: 64px;
+            font-family: inherit;
+            color: #333;
+        }
+
+        .note-input:focus { outline: none; border-color: #4a6fa5; }
+
+        .popup-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .popup-actions .btn { flex: 1; padding: 10px; font-size: 0.88em; }
+
+        /* Responsive */
+        @media (max-width: 560px) {
+            .summary { grid-template-columns: repeat(3, 1fr); }
+            .summary-card:last-child { grid-column: 1 / -1; }
+            .months-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.35em; }
+        }
+
+        @media print {
+            .overlay, .actions-bar { display: none !important; }
+            body { background: white; }
+            .month-card { break-inside: avoid; page-break-inside: avoid; }
+            .months-grid { gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Cocuk Bakim Takvimi</h1>
+    <p>29 Haziran - 7 Eylul 2026 &nbsp;|&nbsp; Anaokulu Mezuniyet Tatili</p>
+</header>
+
+<div class="container">
+
+    <div class="legend">
+        <span class="legend-title">Bakicilar:</span>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--anne)"></div>Anne</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--baba)"></div>Baba</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--buyukanne)"></div>Buyukanne</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--buyukbaba)"></div>Buyukbaba</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--bos)"></div>Atanmadi</div>
+        <span style="margin-left:auto;font-size:0.78em;color:#999;">Bir gune tikla ve bakici sec</span>
+    </div>
+
+    <div class="summary" id="summary"></div>
+
+    <div class="actions-bar">
+        <button class="btn btn-neutral" onclick="window.print()">Yazdir</button>
+        <button class="btn btn-neutral" onclick="exportText()">Metni Kopyala</button>
+        <button class="btn btn-danger" onclick="confirmClear()">Tumuyle Temizle</button>
+    </div>
+
+    <div class="months-grid" id="calendar"></div>
+</div>
+
+<!-- Popup -->
+<div class="overlay" id="overlay" onclick="overlayClick(event)">
+    <div class="popup">
+        <div class="popup-title" id="popup-title">Bakici Sec</div>
+        <div class="cg-grid" id="cg-grid"></div>
+        <div class="field-label">Not (istege bagli)</div>
+        <textarea class="note-input" id="popup-note" placeholder="Bu gun icin not ekle..."></textarea>
+        <div class="popup-actions">
+            <button class="btn btn-neutral" onclick="closePopup()">Iptal</button>
+            <button class="btn btn-primary" onclick="saveAssignment()">Kaydet</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const RANGE_START = new Date(2026, 5, 29);  // 29 Haziran 2026
+    const RANGE_END   = new Date(2026, 8, 7);   // 7 Eylul 2026
+
+    const CAREGIVERS = [
+        { id: 'anne',      label: 'Anne',      init: 'A'    },
+        { id: 'baba',      label: 'Baba',       init: 'B'    },
+        { id: 'buyukanne', label: 'Buyukanne',  init: 'Bu.A' },
+        { id: 'buyukbaba', label: 'Buyukbaba',  init: 'Bu.B' },
+    ];
+
+    const TR_MONTHS = ['Ocak','Subat','Mart','Nisan','Mayis','Haziran',
+                       'Temmuz','Agustos','Eylul','Ekim','Kasim','Aralik'];
+    const TR_DAYS_SHORT = ['Pzt','Sal','Car','Per','Cum','Cmt','Paz'];
+
+    let data = {};         // key: "YYYY-M-D"  value: { caregiver, note }
+    let editDate = null;
+    let chosenCG = null;
+
+    const STORAGE_KEY = 'childcare-takvim-2026';
+
+    function key(d) { return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`; }
+
+    function inRange(d) { return d >= RANGE_START && d <= RANGE_END; }
+
+    function isWeekend(d) { return d.getDay() === 0 || d.getDay() === 6; }
+
+    // ---- persistence ----
+    function load() {
+        try { data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+        catch(e) { data = {}; }
+    }
+    function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+    // ---- summary ----
+    function renderSummary() {
+        const counts = {};
+        CAREGIVERS.forEach(c => counts[c.id] = 0);
+        let total = 0, unassigned = 0;
+
+        let d = new Date(RANGE_START);
+        while (d <= RANGE_END) {
+            total++;
+            const entry = data[key(d)];
+            if (entry && entry.caregiver) counts[entry.caregiver]++;
+            else unassigned++;
+            d.setDate(d.getDate() + 1);
+        }
+
+        const colors = {
+            anne: 'var(--anne)', baba: 'var(--baba)',
+            buyukanne: 'var(--buyukanne)', buyukbaba: 'var(--buyukbaba)'
+        };
+
+        let html = CAREGIVERS.map(cg =>
+            `<div class="summary-card" style="border-color:${colors[cg.id]}">
+                <div class="count" style="color:${colors[cg.id]}">${counts[cg.id]}</div>
+                <div class="label">${cg.label}</div>
+                <div class="sublabel">gun</div>
+             </div>`
+        ).join('');
+
+        html += `<div class="summary-card" style="border-color:#bbb">
+            <div class="count" style="color:#aaa">${unassigned}</div>
+            <div class="label">Atanmadi</div>
+            <div class="sublabel">/ ${total} gun</div>
+        </div>`;
+
+        document.getElementById('summary').innerHTML = html;
+    }
+
+    // ---- calendar ----
+    function renderCalendar() {
+        const cal = document.getElementById('calendar');
+        cal.innerHTML = '';
+
+        const months = [];
+        let cur = new Date(RANGE_START.getFullYear(), RANGE_START.getMonth(), 1);
+        const endM = new Date(RANGE_END.getFullYear(), RANGE_END.getMonth(), 1);
+        while (cur <= endM) {
+            months.push(new Date(cur));
+            cur.setMonth(cur.getMonth() + 1);
+        }
+
+        months.forEach(m => cal.appendChild(buildMonth(m.getFullYear(), m.getMonth())));
+    }
+
+    function buildMonth(year, month) {
+        const card = document.createElement('div');
+        card.className = 'month-card';
+
+        // Header
+        const hdr = document.createElement('div');
+        hdr.className = 'month-header';
+        hdr.textContent = `${TR_MONTHS[month]} ${year}`;
+        card.appendChild(hdr);
+
+        // Weekday row (Mon-Sun)
+        const wds = document.createElement('div');
+        wds.className = 'weekdays';
+        TR_DAYS_SHORT.forEach((d, i) => {
+            const wd = document.createElement('div');
+            wd.className = 'weekday' + (i === 5 ? ' sat' : i === 6 ? ' sun' : '');
+            wd.textContent = d;
+            wds.appendChild(wd);
+        });
+        card.appendChild(wds);
+
+        // Days
+        const grid = document.createElement('div');
+        grid.className = 'days-grid';
+
+        const firstDay = new Date(year, month, 1);
+        let startDow = firstDay.getDay(); // 0=Sun
+        startDow = startDow === 0 ? 6 : startDow - 1; // Mon=0 offset
+
+        for (let i = 0; i < startDow; i++) {
+            const e = document.createElement('div');
+            e.className = 'day empty';
+            grid.appendChild(e);
+        }
+
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const today = new Date();
+
+        for (let d = 1; d <= daysInMonth; d++) {
+            const date = new Date(year, month, d);
+            const cell = document.createElement('div');
+            cell.className = 'day';
+
+            if (!inRange(date)) {
+                cell.classList.add('out-of-range');
+                cell.innerHTML = `<span class="day-num">${d}</span>`;
+            } else {
+                cell.classList.add('in-range', 'clickable');
+                if (isWeekend(date)) cell.classList.add('weekend');
+
+                const entry = data[key(date)];
+                const cg = entry && entry.caregiver ? CAREGIVERS.find(c => c.id === entry.caregiver) : null;
+
+                if (cg) {
+                    cell.classList.add(cg.id);
+                    cell.innerHTML = `<span class="day-num">${d}</span><span class="day-init">${cg.init}</span>`;
+                } else {
+                    cell.innerHTML = `<span class="day-num">${d}</span>`;
+                }
+
+                if (entry && entry.note) {
+                    cell.innerHTML += '<span class="note-dot"></span>';
+                }
+
+                cell.addEventListener('click', () => openPopup(date));
+            }
+
+            if (date.toDateString() === today.toDateString()) cell.classList.add('today');
+            grid.appendChild(cell);
+        }
+
+        card.appendChild(grid);
+        return card;
+    }
+
+    // ---- popup ----
+    function openPopup(date) {
+        editDate = date;
+        chosenCG = null;
+
+        const entry = data[key(date)] || {};
+        const dow = date.getDay();
+        const dowIdx = dow === 0 ? 6 : dow - 1;
+        document.getElementById('popup-title').textContent =
+            `${TR_DAYS_SHORT[dowIdx]}, ${date.getDate()} ${TR_MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+
+        document.getElementById('popup-note').value = entry.note || '';
+
+        const cgGrid = document.getElementById('cg-grid');
+        cgGrid.innerHTML = '';
+
+        CAREGIVERS.forEach(cg => {
+            const btn = document.createElement('button');
+            btn.className = `cg-btn ${cg.id}`;
+            btn.textContent = cg.label;
+            if (entry.caregiver === cg.id) {
+                btn.classList.add('selected');
+                chosenCG = cg.id;
+            }
+            btn.addEventListener('click', () => {
+                chosenCG = cg.id;
+                cgGrid.querySelectorAll('.cg-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+            });
+            cgGrid.appendChild(btn);
+        });
+
+        // "Atanmadi" button spanning full width
+        const clearBtn = document.createElement('button');
+        clearBtn.className = 'cg-btn bos-btn';
+        clearBtn.textContent = 'Atanmadi (temizle)';
+        if (!entry.caregiver) { clearBtn.classList.add('selected'); chosenCG = null; }
+        clearBtn.addEventListener('click', () => {
+            chosenCG = null;
+            cgGrid.querySelectorAll('.cg-btn').forEach(b => b.classList.remove('selected'));
+            clearBtn.classList.add('selected');
+        });
+        cgGrid.appendChild(clearBtn);
+
+        document.getElementById('overlay').classList.add('active');
+        document.getElementById('popup-note').focus();
+    }
+
+    function closePopup() {
+        document.getElementById('overlay').classList.remove('active');
+        editDate = null;
+    }
+
+    function overlayClick(e) {
+        if (e.target === document.getElementById('overlay')) closePopup();
+    }
+
+    function saveAssignment() {
+        if (!editDate) return;
+        const k = key(editDate);
+        const note = document.getElementById('popup-note').value.trim();
+
+        if (chosenCG || note) {
+            data[k] = { caregiver: chosenCG || null, note };
+        } else {
+            delete data[k];
+        }
+
+        save();
+        closePopup();
+        render();
+    }
+
+    // ---- actions ----
+    function confirmClear() {
+        if (!confirm('Tum atamalar silinecek. Emin misiniz?')) return;
+        data = {};
+        save();
+        render();
+    }
+
+    function exportText() {
+        const lines = ['Cocuk Bakim Takvimi (29 Haziran - 7 Eylul 2026)', ''];
+        let d = new Date(RANGE_START);
+        while (d <= RANGE_END) {
+            const entry = data[key(d)];
+            if (entry && (entry.caregiver || entry.note)) {
+                const cg = entry.caregiver ? CAREGIVERS.find(c => c.id === entry.caregiver) : null;
+                const dateStr = `${d.getDate()} ${TR_MONTHS[d.getMonth()]}`;
+                let line = `${dateStr}: ${cg ? cg.label : '?'}`;
+                if (entry.note) line += `  (${entry.note})`;
+                lines.push(line);
+            }
+            d.setDate(d.getDate() + 1);
+        }
+
+        navigator.clipboard.writeText(lines.join('\n'))
+            .then(() => alert('Takvim panoya kopyalandi!'))
+            .catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = lines.join('\n');
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                alert('Takvim panoya kopyalandi!');
+            });
+    }
+
+    // ---- keyboard support ----
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closePopup();
+        if (e.key === 'Enter' && document.getElementById('overlay').classList.contains('active')) {
+            if (document.activeElement !== document.getElementById('popup-note')) {
+                saveAssignment();
+            }
+        }
+    });
+
+    // ---- init ----
+    function render() {
+        renderSummary();
+        renderCalendar();
+    }
+
+    load();
+    render();
+</script>
+</body>
+</html>
