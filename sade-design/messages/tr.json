@@ -1,0 +1,188 @@
+{
+  "meta": {
+    "title": "Sade Design — İç Mimarlık & Tasarım",
+    "description": "Sade Design; iç mimari proje, 3D görselleştirme, anahtar teslim uygulama ve dekorasyon danışmanlığı sunar. Az olan, doğru olandır."
+  },
+  "nav": {
+    "services": "Hizmetler",
+    "gallery": "Projeler",
+    "process": "Süreç",
+    "about": "Hakkımızda",
+    "testimonials": "Referanslar",
+    "faq": "SSS",
+    "contact": "İletişim",
+    "cta": "Ücretsiz Keşif"
+  },
+  "hero": {
+    "kicker": "KESİT 01 — YAŞAM ALANI",
+    "wordmark": "SADE",
+    "subtitle": "DESIGN · İÇ MİMARLIK & TASARIM",
+    "tagline": "Az olan, doğru olandır.",
+    "lede": "Lüks site ve rezidanslarda ev ve ofisler; özel dolap, oda ve mobilya projeleri için danışmanlık, tasarım, 3D görselleştirme ve anahtar teslim uygulama.",
+    "ctaPrimary": "Ücretsiz Keşif & Ön Görüşme",
+    "ctaSecondary": "Projelerimizi İnceleyin"
+  },
+  "services": {
+    "kicker": "KESİT 02 — HİZMETLER",
+    "title": "Neler Yapıyoruz",
+    "items": [
+      {
+        "title": "İç Mimari Proje",
+        "desc": "Keşif ve ihtiyaç analiziyle başlayan, ölçekli çizim ve malzeme kararlarıyla tamamlanan eksiksiz proje dosyası."
+      },
+      {
+        "title": "3D Görselleştirme",
+        "desc": "Mekânı inşa etmeden önce içinde gezinin. Foto-gerçekçi görsellerle kararlarınızı görerek verin."
+      },
+      {
+        "title": "Anahtar Teslim Uygulama",
+        "desc": "İmalat, montaj ve saha koordinasyonu bizde. Söz verilen çizim, söz verilen tarihte teslim edilir."
+      },
+      {
+        "title": "Dekorasyon Danışmanlığı",
+        "desc": "Mevcut mekânınız için mobilya, renk, doku ve aydınlatma seçimlerinde yol gösteren birebir danışmanlık."
+      }
+    ]
+  },
+  "process": {
+    "kicker": "KESİT 03 — SÜREÇ",
+    "title": "Tek Çizgide Beş Durak",
+    "steps": [
+      { "no": "01", "title": "Keşif", "desc": "Mekânı yerinde görür, ölçer, dinleriz. Bu görüşme ücretsizdir." },
+      { "no": "02", "title": "Konsept & Moodboard", "desc": "İhtiyaç ve zevkinize göre malzeme ve konsept önerisi hazırlarız." },
+      { "no": "03", "title": "3D Görselleştirme", "desc": "Tasarımı üç boyutlu görsellerle önünüze koyar, birlikte revize ederiz." },
+      { "no": "04", "title": "Uygulama", "desc": "İmalat ve montajı sahada biz yönetiriz; siz süreci takip edersiniz." },
+      { "no": "05", "title": "Teslim & Destek", "desc": "Mekânı çizimdeki haliyle teslim eder, teslim sonrası da yanınızda oluruz." }
+    ]
+  },
+  "trust": {
+    "kicker": "KESİT 04 — GÜVEN",
+    "title": "Rakamlarla Sade Design",
+    "stats": [
+      { "value": "40+", "label": "Tamamlanan Proje" },
+      { "value": "12", "label": "Hizmet Verilen Site/Rezidans" },
+      { "value": "%98", "label": "Müşteri Memnuniyeti" },
+      { "value": "6–10 Hafta", "label": "Ortalama Teslim Süresi" }
+    ]
+  },
+  "gallery": {
+    "kicker": "KESİT 05 — SEÇİLMİŞ İŞLER",
+    "title": "Projeler",
+    "categories": {
+      "all": "Tümü",
+      "living": "Salon",
+      "bedroom": "Yatak Odası",
+      "kitchen": "Mutfak",
+      "office": "Ofis",
+      "furniture": "Özel Mobilya"
+    },
+    "viewProject": "Projeyi İncele",
+    "emptyState": "Bu kategoride yakında yeni projeler paylaşılacak."
+  },
+  "about": {
+    "kicker": "KESİT 06 — HAKKIMIZDA",
+    "title": "Stüdyo",
+    "paragraphs": [
+      "Sade Design, iyi bir mekânın kalabalıkla değil, doğru kararlarla kurulduğuna inanan bir iç mimarlık stüdyosudur. Her projeye aynı soruyla başlarız: Burada gerçekten neye ihtiyaç var?",
+      "Tasarımı ve uygulamayı tek çatı altında yürütürüz. Konsepti çizen el ile sahada işi teslim eden el aynı masada oturur; bu yüzden projelerimizde çizim ile sonuç arasında fark yoktur.",
+      "Konut, ofis ve özel mobilya (dolap, oda, masa) projelerinde; keşiften anahtar teslime kadar tüm süreci üstleniyoruz."
+    ],
+    "facts": [
+      { "label": "Yaklaşım", "value": "Az, ama doğru — her karar gerekçesiyle" },
+      { "label": "Kapsam", "value": "Konut · Ofis · Özel Mobilya" },
+      { "label": "Model", "value": "Tasarım + uygulama, tek elden" }
+    ]
+  },
+  "testimonials": {
+    "kicker": "KESİT 07 — REFERANSLAR",
+    "title": "Müşterilerimiz Anlatıyor",
+    "googleCta": "Google'da yorumlarımızı görün",
+    "emptyState": "Referanslarımız yakında burada."
+  },
+  "faq": {
+    "kicker": "KESİT 08 — SSS",
+    "title": "Sık Sorulan Sorular",
+    "items": [
+      {
+        "q": "Keşif görüşmesi gerçekten ücretsiz mi?",
+        "a": "Evet. İlk keşif ve ön görüşme her zaman ücretsizdir; mekânı yerinde görüp ihtiyacınızı birlikte netleştiririz."
+      },
+      {
+        "q": "Sadece tasarım mı yapıyorsunuz, uygulama da alıyor musunuz?",
+        "a": "İkisini de yapıyoruz. Dilerseniz sadece proje ve 3D görselleştirme alırsınız, dilerseniz imalat ve montaj dahil anahtar teslim çözüm sunarız."
+      },
+      {
+        "q": "Bir proje ortalama ne kadar sürer?",
+        "a": "Kapsam ve büyüklüğe göre değişmekle birlikte, konsept onayından teslime kadar ortalama 6–10 hafta sürer."
+      },
+      {
+        "q": "Hangi bölgelerde hizmet veriyorsunuz?",
+        "a": "İstanbul içindeki lüks site ve rezidanslar başta olmak üzere, proje kapsamına göre şehir dışında da çalışabiliyoruz."
+      },
+      {
+        "q": "Sadece dolap veya tek bir oda için de çalışıyor musunuz?",
+        "a": "Evet. Tüm eviniz için olduğu kadar tek bir oda, gömme dolap veya özel mobilya projeleri için de danışmanlık ve tasarım hizmeti veriyoruz."
+      }
+    ]
+  },
+  "contact": {
+    "kicker": "KESİT 09 — İLETİŞİM",
+    "title": "Konuşalım",
+    "directTitle": "Doğrudan Ulaşın",
+    "phoneLabel": "Telefon",
+    "emailLabel": "E-posta",
+    "followLabel": "Bizi Takip Edin",
+    "whatsapp": "WhatsApp'tan Yazın",
+    "formKicker": "ÜCRETSİZ KEŞİF TALEBİ",
+    "formTitle": "Aramamızı mı istersiniz?",
+    "formDesc": "Hemen aramaya vaktiniz yoksa, birkaç bilgi bırakın; müsait olduğunuzda biz sizi arayalım.",
+    "fields": {
+      "name": "Ad Soyad",
+      "phone": "Telefon",
+      "email": "E-posta",
+      "projectType": "Proje Tipi",
+      "projectTypePlaceholder": "Seçiniz",
+      "budget": "Bütçe Aralığı (opsiyonel)",
+      "message": "Mesajınız",
+      "consent": "Kişisel verilerimin, talebimi yanıtlamak amacıyla işlenmesini kabul ediyorum."
+    },
+    "projectTypes": {
+      "home": "Ev",
+      "office": "Ofis",
+      "furniture": "Dolap / Mobilya",
+      "other": "Diğer"
+    },
+    "submit": "Talebi Gönder",
+    "sending": "Gönderiliyor...",
+    "success": "Teşekkürler! Talebiniz bize ulaştı, en kısa sürede sizi arayacağız.",
+    "error": "Bir şeyler ters gitti, lütfen doğrudan telefon veya WhatsApp ile ulaşın.",
+    "privacyLinkText": "Gizlilik Politikası"
+  },
+  "footer": {
+    "tagline": "Az olan, doğru olandır.",
+    "rights": "SADE DESIGN — İÇ MİMARLIK & TASARIM",
+    "privacyLink": "Gizlilik Politikası"
+  },
+  "privacy": {
+    "title": "Gizlilik Politikası",
+    "intro": "Bu sayfa, Sade Design olarak web sitemiz üzerinden bizimle iletişime geçtiğinizde kişisel verilerinizi nasıl işlediğimizi açıklar.",
+    "sections": [
+      {
+        "title": "Hangi verileri topluyoruz?",
+        "body": "İletişim formunu doldurduğunuzda ad-soyad, telefon, e-posta, proje tipi ve mesajınızı işleriz."
+      },
+      {
+        "title": "Verilerinizi nasıl kullanıyoruz?",
+        "body": "Bu bilgiler yalnızca sizinle iletişime geçip talebinizi yanıtlamak amacıyla kullanılır ve tarafımızca ayrı bir veritabanında saklanmaz; form gönderimi doğrudan e-posta olarak tarafımıza iletilir."
+      },
+      {
+        "title": "Üçüncü taraflarla paylaşım",
+        "body": "Verileriniz, yasal zorunluluklar dışında üçüncü taraflarla paylaşılmaz veya pazarlama amacıyla kullanılmaz."
+      },
+      {
+        "title": "İletişim",
+        "body": "Verilerinizle ilgili sorularınız için bizimle sitede yer alan iletişim bilgilerinden ulaşabilirsiniz."
+      }
+    ]
+  }
+}

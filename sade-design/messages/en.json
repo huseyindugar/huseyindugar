@@ -1,0 +1,188 @@
+{
+  "meta": {
+    "title": "Sade Design — Interior Architecture & Design",
+    "description": "Sade Design offers interior architecture, 3D visualization, turnkey execution and decoration consultancy. Less, but right."
+  },
+  "nav": {
+    "services": "Services",
+    "gallery": "Projects",
+    "process": "Process",
+    "about": "About",
+    "testimonials": "Testimonials",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Free Consultation"
+  },
+  "hero": {
+    "kicker": "SECTION 01 — LIVING SPACE",
+    "wordmark": "SADE",
+    "subtitle": "STUDIO · INTERIOR ARCHITECTURE & DESIGN",
+    "tagline": "Less, but right.",
+    "lede": "Consultancy, design, 3D visualization and turnkey execution for homes and offices in luxury residences, and for custom closets, rooms and furniture.",
+    "ctaPrimary": "Free Consultation Visit",
+    "ctaSecondary": "See Our Projects"
+  },
+  "services": {
+    "kicker": "SECTION 02 — SERVICES",
+    "title": "What We Do",
+    "items": [
+      {
+        "title": "Interior Architecture Project",
+        "desc": "A complete project file, starting with a site survey and needs analysis and finishing with scaled drawings and material decisions."
+      },
+      {
+        "title": "3D Visualization",
+        "desc": "Walk through your space before it's built. Make decisions by seeing photo-realistic renders first."
+      },
+      {
+        "title": "Turnkey Execution",
+        "desc": "Manufacturing, installation and on-site coordination are handled by us. The drawing you approve is the space you receive, on the promised date."
+      },
+      {
+        "title": "Decoration Consultancy",
+        "desc": "One-on-one guidance on furniture, color, texture and lighting choices for your existing space."
+      }
+    ]
+  },
+  "process": {
+    "kicker": "SECTION 03 — PROCESS",
+    "title": "Five Stops, One Line",
+    "steps": [
+      { "no": "01", "title": "Discovery", "desc": "We visit, measure and listen. This visit is always free." },
+      { "no": "02", "title": "Concept & Moodboard", "desc": "We prepare a material and concept proposal tailored to your needs and taste." },
+      { "no": "03", "title": "3D Visualization", "desc": "We present the design as photo-realistic renders and revise it together with you." },
+      { "no": "04", "title": "Execution", "desc": "We manage manufacturing and installation on site; you simply follow along." },
+      { "no": "05", "title": "Handover & Support", "desc": "We deliver the space exactly as drawn, and stay with you after handover." }
+    ]
+  },
+  "trust": {
+    "kicker": "SECTION 04 — TRUST",
+    "title": "Sade Design in Numbers",
+    "stats": [
+      { "value": "40+", "label": "Completed Projects" },
+      { "value": "12", "label": "Residences Served" },
+      { "value": "98%", "label": "Client Satisfaction" },
+      { "value": "6–10 Weeks", "label": "Average Delivery Time" }
+    ]
+  },
+  "gallery": {
+    "kicker": "SECTION 05 — SELECTED WORK",
+    "title": "Projects",
+    "categories": {
+      "all": "All",
+      "living": "Living Room",
+      "bedroom": "Bedroom",
+      "kitchen": "Kitchen",
+      "office": "Office",
+      "furniture": "Custom Furniture"
+    },
+    "viewProject": "View Project",
+    "emptyState": "New projects in this category are coming soon."
+  },
+  "about": {
+    "kicker": "SECTION 06 — ABOUT",
+    "title": "The Studio",
+    "paragraphs": [
+      "Sade Design is an interior architecture studio that believes a good space is built with the right decisions, not with clutter. We start every project with the same question: what is actually needed here?",
+      "We run design and execution under one roof. The hand that draws the concept and the hand that delivers it on site sit at the same table — so with us, there is no gap between the drawing and the result.",
+      "In homes, offices and custom furniture (closets, rooms, tables), we take on the full process from discovery to turnkey handover."
+    ],
+    "facts": [
+      { "label": "Approach", "value": "Less, but right — every decision has a reason" },
+      { "label": "Scope", "value": "Residential · Office · Custom Furniture" },
+      { "label": "Model", "value": "Design + execution, under one roof" }
+    ]
+  },
+  "testimonials": {
+    "kicker": "SECTION 07 — TESTIMONIALS",
+    "title": "What Our Clients Say",
+    "googleCta": "See our reviews on Google",
+    "emptyState": "Our testimonials are coming soon."
+  },
+  "faq": {
+    "kicker": "SECTION 08 — FAQ",
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "Is the discovery visit really free?",
+        "a": "Yes. The first site visit and consultation are always free — we see the space in person and clarify your needs together."
+      },
+      {
+        "q": "Do you only design, or do you also build?",
+        "a": "Both. You can choose to receive only the project and 3D visualization, or a full turnkey solution including manufacturing and installation."
+      },
+      {
+        "q": "How long does a project usually take?",
+        "a": "It varies with scope and size, but from concept approval to handover it usually takes 6–10 weeks."
+      },
+      {
+        "q": "Which regions do you serve?",
+        "a": "Mainly luxury residences within Istanbul, though we can also take on projects outside the city depending on scope."
+      },
+      {
+        "q": "Do you work on a single closet or a single room?",
+        "a": "Yes. We offer consultancy and design for a whole home as well as for a single room, a built-in closet, or a custom furniture piece."
+      }
+    ]
+  },
+  "contact": {
+    "kicker": "SECTION 09 — CONTACT",
+    "title": "Let's Talk",
+    "directTitle": "Reach Us Directly",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "followLabel": "Follow Us",
+    "whatsapp": "Message on WhatsApp",
+    "formKicker": "FREE CONSULTATION REQUEST",
+    "formTitle": "Prefer we call you?",
+    "formDesc": "If you don't have time to call right now, leave a few details and we'll call you back when you're available.",
+    "fields": {
+      "name": "Full Name",
+      "phone": "Phone",
+      "email": "Email",
+      "projectType": "Project Type",
+      "projectTypePlaceholder": "Select",
+      "budget": "Budget Range (optional)",
+      "message": "Your Message",
+      "consent": "I agree to my personal data being processed in order to respond to my request."
+    },
+    "projectTypes": {
+      "home": "Home",
+      "office": "Office",
+      "furniture": "Closet / Furniture",
+      "other": "Other"
+    },
+    "submit": "Send Request",
+    "sending": "Sending...",
+    "success": "Thank you! Your request has reached us — we'll call you back shortly.",
+    "error": "Something went wrong, please reach us directly by phone or WhatsApp instead.",
+    "privacyLinkText": "Privacy Policy"
+  },
+  "footer": {
+    "tagline": "Less, but right.",
+    "rights": "SADE DESIGN — INTERIOR ARCHITECTURE & DESIGN",
+    "privacyLink": "Privacy Policy"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "This page explains how Sade Design processes your personal data when you contact us through our website.",
+    "sections": [
+      {
+        "title": "What data do we collect?",
+        "body": "When you fill in the contact form, we process your name, phone number, email, project type and message."
+      },
+      {
+        "title": "How do we use your data?",
+        "body": "This information is used solely to contact you and respond to your request. It is not stored in a separate database by us; form submissions are forwarded directly to us by email."
+      },
+      {
+        "title": "Sharing with third parties",
+        "body": "Your data is not shared with third parties or used for marketing purposes, except where legally required."
+      },
+      {
+        "title": "Contact",
+        "body": "For questions about your data, you can reach us using the contact details listed on this site."
+      }
+    ]
+  }
+}
