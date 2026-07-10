@@ -7,7 +7,10 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="foot-in">
-        <span className="foot-mark">SADE</span>
+        <div className="foot-brand">
+          <span className="foot-mark">SADE</span>
+          <span className="foot-tagline">{t("tagline")}</span>
+        </div>
         <span className="foot-note">
           © {new Date().getFullYear()} {t("rights")}
         </span>

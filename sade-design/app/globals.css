@@ -1103,10 +1103,22 @@ section {
   flex-wrap: wrap;
   gap: 18px;
 }
+.foot-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 .foot-mark {
   font-family: var(--disp);
   font-size: 19px;
   letter-spacing: 0.28em;
+}
+.foot-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-60);
 }
 .foot-note {
   font-family: var(--sans);

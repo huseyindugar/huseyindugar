@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Sade Design — İç Mimarlık & Tasarım",
-    "description": "Sade Design; iç mimari proje, 3D görselleştirme, anahtar teslim uygulama ve dekorasyon danışmanlığı sunar. Az olan, doğru olandır."
+    "description": "Sade Design; iç mimari proje, 3D görselleştirme, anahtar teslim uygulama ve dekorasyon danışmanlığı sunar. Her zevke usta bir dokunuş."
   },
   "nav": {
     "services": "Hizmetler",
@@ -17,7 +17,7 @@
     "kicker": "KESİT 01 — YAŞAM ALANI",
     "wordmark": "SADE",
     "subtitle": "DESIGN · İÇ MİMARLIK & TASARIM",
-    "tagline": "Az olan, doğru olandır.",
+    "tagline": "Her zevke usta bir dokunuş.",
     "lede": "Lüks site ve rezidanslarda ev ve ofisler; özel dolap, oda ve mobilya projeleri için danışmanlık, tasarım, 3D görselleştirme ve anahtar teslim uygulama.",
     "ctaPrimary": "Ücretsiz Keşif & Ön Görüşme",
     "ctaSecondary": "Projelerimizi İnceleyin"
@@ -88,7 +88,7 @@
       "Konut, ofis ve özel mobilya (dolap, oda, masa) projelerinde; keşiften anahtar teslime kadar tüm süreci üstleniyoruz."
     ],
     "facts": [
-      { "label": "Yaklaşım", "value": "Az, ama doğru — her karar gerekçesiyle" },
+      { "label": "Yaklaşım", "value": "Her zevke özel, usta dokunuşuyla" },
       { "label": "Kapsam", "value": "Konut · Ofis · Özel Mobilya" },
       { "label": "Model", "value": "Tasarım + uygulama, tek elden" }
     ]
@@ -159,7 +159,7 @@
     "privacyLinkText": "Gizlilik Politikası"
   },
   "footer": {
-    "tagline": "Az olan, doğru olandır.",
+    "tagline": "Her zevke usta bir dokunuş.",
     "rights": "SADE DESIGN — İÇ MİMARLIK & TASARIM",
     "privacyLink": "Gizlilik Politikası"
   },

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Sade Design — Interior Architecture & Design",
-    "description": "Sade Design offers interior architecture, 3D visualization, turnkey execution and decoration consultancy. Less, but right."
+    "description": "Sade Design offers interior architecture, 3D visualization, turnkey execution and decoration consultancy. A masterful touch for every taste."
   },
   "nav": {
     "services": "Services",
@@ -17,7 +17,7 @@
     "kicker": "SECTION 01 — LIVING SPACE",
     "wordmark": "SADE",
     "subtitle": "STUDIO · INTERIOR ARCHITECTURE & DESIGN",
-    "tagline": "Less, but right.",
+    "tagline": "A masterful touch for every taste.",
     "lede": "Consultancy, design, 3D visualization and turnkey execution for homes and offices in luxury residences, and for custom closets, rooms and furniture.",
     "ctaPrimary": "Free Consultation Visit",
     "ctaSecondary": "See Our Projects"
@@ -88,7 +88,7 @@
       "In homes, offices and custom furniture (closets, rooms, tables), we take on the full process from discovery to turnkey handover."
     ],
     "facts": [
-      { "label": "Approach", "value": "Less, but right — every decision has a reason" },
+      { "label": "Approach", "value": "Every taste, with a master's touch" },
       { "label": "Scope", "value": "Residential · Office · Custom Furniture" },
       { "label": "Model", "value": "Design + execution, under one roof" }
     ]
@@ -159,7 +159,7 @@
     "privacyLinkText": "Privacy Policy"
   },
   "footer": {
-    "tagline": "Less, but right.",
+    "tagline": "A masterful touch for every taste.",
     "rights": "SADE DESIGN — INTERIOR ARCHITECTURE & DESIGN",
     "privacyLink": "Privacy Policy"
   },

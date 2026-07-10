@@ -25,7 +25,7 @@ const crimson = Crimson_Pro({
 export const metadata: Metadata = {
   title: "Sade Design — İç Mimarlık & Tasarım",
   description:
-    "Sade Design; iç mimari proje, 3D görselleştirme, anahtar teslim uygulama ve dekorasyon danışmanlığı sunar. Az olan, doğru olandır.",
+    "Sade Design; iç mimari proje, 3D görselleştirme, anahtar teslim uygulama ve dekorasyon danışmanlığı sunar. Her zevke usta bir dokunuş.",
 };
 
 export default async function RootLayout({
