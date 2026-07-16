@@ -693,6 +693,33 @@ section {
 .work:hover {
   border-color: var(--ink);
 }
+.work .w-hover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--ink);
+  color: var(--ecru);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1;
+}
+.work:hover .w-hover {
+  opacity: 1;
+}
+@media (hover: none) {
+  .work .w-hover {
+    display: none;
+  }
+}
 .work img {
   position: absolute;
   inset: 0;

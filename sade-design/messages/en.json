@@ -184,5 +184,11 @@
         "body": "For questions about your data, you can reach us using the contact details listed on this site."
       }
     ]
+  },
+  "notFound": {
+    "kicker": "404",
+    "title": "This page could not be found",
+    "body": "The page you're looking for may have been removed or never existed.",
+    "cta": "Back to Homepage"
   }
 }

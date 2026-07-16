@@ -184,5 +184,11 @@
         "body": "Verilerinizle ilgili sorularınız için bizimle sitede yer alan iletişim bilgilerinden ulaşabilirsiniz."
       }
     ]
+  },
+  "notFound": {
+    "kicker": "404",
+    "title": "Bu sayfa bulunamadı",
+    "body": "Aradığınız sayfa kaldırılmış veya hiç var olmamış olabilir.",
+    "cta": "Anasayfaya Dön"
   }
 }

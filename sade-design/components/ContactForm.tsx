@@ -83,7 +83,9 @@ export default function ContactForm() {
           <input type="checkbox" name="consent" required />
           <span>
             {t("fields.consent")}{" "}
-            <Link href="/gizlilik-politikasi">{t("privacyLinkText")}</Link>
+            <Link href="/gizlilik-politikasi" target="_blank" rel="noopener noreferrer">
+              {t("privacyLinkText")}
+            </Link>
           </span>
         </label>
 

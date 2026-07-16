@@ -117,6 +117,7 @@ export default function GalleryGrid({ projects }: { projects: SanityProject[] })
                 ) : (
                   placeholderGlyphs[project.category]
                 )}
+                <span className="w-hover">{t("viewProject")}</span>
                 <div className="w-tag">
                   <span className="w-name">{title}</span>
                   <span className="w-cat">{categories[project.category]}</span>
