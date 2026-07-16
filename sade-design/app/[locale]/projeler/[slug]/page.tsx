@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { getProjectBySlug } from "@/sanity/lib/queries";
-import { urlForImage } from "@/sanity/lib/image";
+import { resolveImageUrl } from "@/sanity/lib/image";
 
 export default async function ProjectDetailPage({
   params,
@@ -21,9 +21,8 @@ export default async function ProjectDetailPage({
 
   const title = project.title?.[loc] || project.title?.tr;
   const description = project.description?.[loc] || project.description?.tr;
-  const coverUrl = project.coverImage
-    ? urlForImage(project.coverImage)?.width(1600).height(900).url()
-    : null;
+  const coverUrl = resolveImageUrl(project.coverImage, 1600, 900);
+  const restImages = project.images ?? [];
 
   return (
     <section className="simple-page">
@@ -41,10 +40,10 @@ export default async function ProjectDetailPage({
         )}
       </div>
 
-      {project.images && project.images.length > 0 && (
+      {restImages.length > 0 && (
         <div className="project-images">
-          {project.images.map((img, i) => {
-            const url = img ? urlForImage(img)?.width(900).height(675).url() : null;
+          {restImages.map((img, i) => {
+            const url = resolveImageUrl(img, 900, 675);
             return (
               <div key={i}>
                 {url && (

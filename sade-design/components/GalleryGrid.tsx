@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { urlForImage } from "@/sanity/lib/image";
+import { resolveImageUrl } from "@/sanity/lib/image";
 import type { SanityProject } from "@/sanity/lib/queries";
 
 const placeholderGlyphs: Record<string, React.ReactNode> = {
@@ -107,9 +107,7 @@ export default function GalleryGrid({ projects }: { projects: SanityProject[] })
       ) : (
         <div className="works">
           {filtered.map((project) => {
-            const img = project.coverImage
-              ? urlForImage(project.coverImage)?.width(600).height(800).url()
-              : null;
+            const img = resolveImageUrl(project.coverImage, 600, 800);
             const title = project.title?.[locale] || project.title?.tr;
             return (
               <Link key={project._id} className="work" href={`/projeler/${project.slug.current}`}>
