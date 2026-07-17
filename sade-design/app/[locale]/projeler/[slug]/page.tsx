@@ -16,7 +16,6 @@ export default async function ProjectDetailPage({
   if (!project) notFound();
 
   const t = await getTranslations("gallery");
-  const categories = t.raw("categories") as Record<string, string>;
   const loc = locale as "tr" | "en";
 
   const title = project.title?.[loc] || project.title?.tr;
@@ -29,7 +28,9 @@ export default async function ProjectDetailPage({
       <Link className="back-link" href="/#projeler">
         ← {t("title")}
       </Link>
-      <div className="label">{categories[project.category]}</div>
+      <div className="label">
+        {project.category?.title?.[loc] || project.category?.title?.tr}
+      </div>
       <h2>{title}</h2>
       {description && <p style={{ marginTop: "24px" }}>{description}</p>}
 

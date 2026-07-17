@@ -1,9 +1,19 @@
-import { useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import Reveal from "./Reveal";
+import { getSiteSettings } from "@/sanity/lib/queries";
 
-export default function TrustStats() {
-  const t = useTranslations("trust");
-  const stats = t.raw("stats") as { value: string; label: string }[];
+export default async function TrustStats() {
+  const t = await getTranslations("trust");
+  const locale = (await getLocale()) as "tr" | "en";
+  const settings = await getSiteSettings();
+
+  const stats =
+    settings?.stats && settings.stats.length > 0
+      ? settings.stats.map((s) => ({
+          value: s.value,
+          label: s.label?.[locale] || s.label?.tr || "",
+        }))
+      : (t.raw("stats") as { value: string; label: string }[]);
 
   return (
     <section id="guven">

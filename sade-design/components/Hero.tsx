@@ -6,11 +6,6 @@ export default function Hero() {
 
   return (
     <header className="hero" id="top">
-      <span className="corner tl" />
-      <span className="corner tr" />
-      <span className="corner bl" />
-      <span className="corner br" />
-
       <svg className="hero-drawing" viewBox="0 0 300 150" aria-hidden="true">
         <line className="draw" style={{ "--len": 230 } as React.CSSProperties} x1="35" y1="128" x2="265" y2="128" />
         <line className="draw thin" style={{ "--len": 6, animationDelay: ".2s" } as React.CSSProperties} x1="35" y1="128" x2="35" y2="134" />

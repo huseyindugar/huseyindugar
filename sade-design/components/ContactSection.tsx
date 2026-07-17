@@ -35,7 +35,7 @@ export default async function ContactSection() {
               <a href={`mailto:${site.email}`}>{site.email}</a>
             </div>
             <div className="c-line">
-              <a className="btn" href={site.whatsappHref} target="_blank" rel="noopener noreferrer">
+              <a className="btn btn-wa" href={site.whatsappHref} target="_blank" rel="noopener noreferrer">
                 {t("whatsapp")}
               </a>
             </div>
@@ -63,10 +63,14 @@ export default async function ContactSection() {
                 </a>
                 <a className="soc" href={site.linkedin.url} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <svg viewBox="0 0 30 30">
-                    <rect x="2" y="2" width="26" height="26" rx="6" fill="#0A66C2" />
-                    <circle cx="9.7" cy="10.4" r="2" fill="#fff" />
-                    <rect x="8.1" y="13.4" width="3.2" height="9.4" fill="#fff" />
-                    <path d="M14.4 13.4h3.1v1.7c.6-1.1 2-1.9 3.7-1.9 3.5 0 4.5 2 4.5 5.2v6.4h-3.2v-5.8c0-1.6-.6-2.8-2.2-2.8-1.2 0-1.9.8-2.3 1.6-.1.3-.2.7-.2 1.1v5.9h-3.2V13.4Z" fill="#fff" />
+                    <rect x="2" y="2" width="26" height="26" rx="4" fill="#0A66C2" />
+                    {/* official LinkedIn "in" glyph (Font Awesome linkedin-in path, 448x512) */}
+                    <g transform="translate(7.55, 6.5) scale(0.0332)">
+                      <path
+                        fill="#fff"
+                        d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 148.9z"
+                      />
+                    </g>
                   </svg>
                   <span>{site.linkedin.handle}</span>
                 </a>

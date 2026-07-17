@@ -8,6 +8,19 @@ export type StaticProject = {
   description: { tr: string; en: string };
 };
 
+// Category display names for the static seed content. Once Sanity is
+// configured, categories come from the CMS instead and can be anything.
+export const staticCategoryTitles: Record<
+  StaticProject["category"],
+  { tr: string; en: string }
+> = {
+  living: { tr: "Salon", en: "Living Room" },
+  bedroom: { tr: "Yatak Odası", en: "Bedroom" },
+  kitchen: { tr: "Mutfak", en: "Kitchen" },
+  office: { tr: "Ofis", en: "Office" },
+  furniture: { tr: "Özel Mobilya", en: "Custom Furniture" },
+};
+
 // Returns the extra gallery images (2.jpg, 3.jpg, ...) beyond the cover (1.jpg).
 function imgs(slug: string, count: number) {
   return Array.from({ length: count - 1 }, (_, i) => `/projects/${slug}/${i + 2}.jpg`);

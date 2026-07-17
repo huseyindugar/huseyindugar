@@ -24,16 +24,10 @@ export const project = defineType({
     defineField({
       name: "category",
       title: "Kategori",
-      type: "string",
-      options: {
-        list: [
-          { title: "Salon", value: "living" },
-          { title: "Yatak Odası", value: "bedroom" },
-          { title: "Mutfak", value: "kitchen" },
-          { title: "Ofis", value: "office" },
-          { title: "Özel Mobilya", value: "furniture" },
-        ],
-      },
+      description:
+        "Listeden seçin; yeni bir kategori gerekiyorsa buradan 'Create new' ile anında ekleyebilirsiniz.",
+      type: "reference",
+      to: [{ type: "category" }],
       validation: (r) => r.required(),
     }),
     defineField({
@@ -76,7 +70,7 @@ export const project = defineType({
     }),
   ],
   preview: {
-    select: { title: "title.tr", category: "category", media: "coverImage" },
+    select: { title: "title.tr", category: "category.title.tr", media: "coverImage" },
     prepare({ title, category, media }) {
       return { title, subtitle: category, media };
     },

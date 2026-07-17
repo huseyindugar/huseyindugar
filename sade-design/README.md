@@ -32,23 +32,41 @@ dosyasına bakabilirsiniz):
 Google Yorumlar linki **yer tutucudur** — canlıya almadan önce bu dosyayı kendi gerçek
 bilgilerinizle güncelleyin.
 
-## Proje/portföy ve referans (testimonial) içeriği ekleme
+## İçerik yönetim paneli (/studio) — kod yazmadan içerik güncelleme
 
-İçerik, kod dokunmadan **Sanity Studio** üzerinden yönetilir:
+Site içeriği, kod dokunmadan **Sanity Studio** panelinden yönetilir. Panel kurulduktan
+sonra şunları kendiniz yapabilirsiniz:
 
-1. [sanity.io](https://sanity.io) üzerinde ücretsiz bir hesap/proje oluşturun.
-2. `NEXT_PUBLIC_SANITY_PROJECT_ID` değerini `.env.local`'e yazın.
-3. `npm run dev` ile siteyi çalıştırıp `http://localhost:3000/studio` adresine gidin,
-   Sanity hesabınızla giriş yapın.
-4. **Proje** belgesi oluşturarak yeni bir render/portföy kaydı ekleyin: başlık (TR/EN),
-   kategori (Salon, Yatak Odası, Mutfak, Ofis, Özel Mobilya), kapak görseli, ek görseller,
-   açıklama.
-5. **Referans** belgesi oluşturarak müşteri alıntılarını (isim, proje tipi, alıntı metni,
-   1-5 yıldız puan) ekleyin. Bu alan ziyaretçi tarafından doldurulmaz — sadece siz
-   ekleyip düzenlersiniz (bkz. aşağıdaki "Neden ziyaretçi yorum formu yok?").
+- **Yeni proje eklemek** — başlık (TR/EN), kategori, kapak görseli + istediğiniz kadar ek
+  görsel, açıklama. Görselleri sürükle-bırak ile yüklersiniz.
+- **Yeni kategori açmak** — kategoriler artık sabit bir liste değil: proje eklerken
+  kategori alanında "Create new" diyerek (ör. "Fuar Standı", "Restoran") yeni bir başlık
+  açabilirsiniz; galeri filtre butonları otomatik olarak bu yeni kategoriyi gösterir.
+- **Ana sayfa giriş fotoğraflarını değiştirmek** — **Site Ayarları** belgesindeki "Giriş
+  Foto Şeridi" alanına 3 görsel yükleyin (1.si soldaki büyük alan, 2.si sağ üst, 3.sü sağ
+  alt). Boş bırakılırsa mevcut varsayılan fotoğraflar gösterilir.
+- **İstatistikleri güncellemek** — **Site Ayarları** belgesindeki "Rakamlarla Sade Design"
+  listesinden değer (ör. `40+`) ve etiketleri (TR/EN) düzenleyin.
+- **Referans/müşteri alıntısı eklemek** — **Referans** belgesi (isim, proje tipi, alıntı,
+  1-5 yıldız). Not: Referanslar bölümü, ilk gerçek referans eklenene kadar siteden
+  kaldırılmıştır; içerik hazır olduğunda tekrar açılabilir.
 
-Sanity yapılandırılmadığı sürece (env değişkeni boşsa) galeri ve referanslar bölümleri
-sitenin marka diline uygun yer tutucu içerik gösterir; site asla hata vermez.
+### Panel kurulumu (bir kere yapılır)
+
+1. [sanity.io](https://sanity.io) üzerinde ücretsiz bir hesap ve proje oluşturun
+   (kredi kartı istemez).
+2. Projenin ID'sini `NEXT_PUBLIC_SANITY_PROJECT_ID` olarak `.env.local`'e (ve canlıda
+   Vercel ortam değişkenlerine) yazın.
+3. [sanity.io/manage](https://sanity.io/manage) → projeniz → **API → CORS origins**
+   bölümüne sitenizin adreslerini ekleyin (`http://localhost:3000` ve canlı domaininiz).
+4. Siteyi çalıştırıp `siteniz.com/studio` (yerelde `http://localhost:3000/studio`)
+   adresine gidin, Sanity hesabınızla giriş yapın — panel budur.
+
+Sanity yapılandırılmadığı sürece (env değişkeni boşsa) site, koda gömülü mevcut 17
+projelik galeriyi ve varsayılan istatistik/fotoğrafları gösterir; site asla hata vermez.
+Sanity'ye ilk proje eklendiği andan itibaren galeri **yalnızca** paneldeki içeriği
+gösterir (statik seed devre dışı kalır) — bu yüzden panele geçerken mevcut projeleri de
+oradan ekleyerek başlamanız önerilir.
 
 ## Neden ziyaretçi yorum formu / iletişim verisi saklama yok?
 
