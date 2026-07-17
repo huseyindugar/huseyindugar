@@ -4,7 +4,7 @@
   --ecru: #f4efe5;
   --ecru-deep: #ece5d6;
   --ink: #283c35;
-  --ink-60: rgba(40, 60, 53, 0.6);
+  --ink-60: rgba(40, 60, 53, 0.78);
   --ink-35: rgba(40, 60, 53, 0.35);
   --ink-15: rgba(40, 60, 53, 0.15);
   --terra: #c4714f;
@@ -53,7 +53,7 @@ button {
 /* ---------- utility type ---------- */
 .label {
   font-family: var(--sans);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
@@ -117,7 +117,7 @@ h2.kesit-title {
 .nav-links a,
 .nav-links button {
   font-family: var(--sans);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 11.5px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -639,7 +639,7 @@ section {
 }
 .stat .stat-label {
   font-family: var(--sans);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -662,7 +662,7 @@ section {
 }
 .filter-btn {
   font-family: var(--sans);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -999,29 +999,16 @@ section {
   width: 30px;
   height: 30px;
   overflow: visible;
-}
-.soc svg * {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 1.1;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.soc svg .fl {
-  fill: var(--ink);
-  stroke: none;
+  transition: transform 0.25s ease;
 }
 .soc span {
   font-family: var(--sans);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 10.5px;
   letter-spacing: 0.14em;
 }
-.soc:hover svg * {
-  stroke: var(--terra);
-}
-.soc:hover svg .fl {
-  fill: var(--terra);
+.soc:hover svg {
+  transform: translateY(-2px) scale(1.06);
 }
 .soc:hover span {
   color: var(--terra);
@@ -1122,22 +1109,22 @@ section {
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  background: var(--ink);
-  color: var(--ecru);
+  background: #25d366;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0 6px 20px rgba(40, 60, 53, 0.25);
+  box-shadow: 0 6px 20px rgba(40, 60, 53, 0.3);
   transition: background 0.3s ease, transform 0.3s ease;
 }
 .wa-float:hover {
-  background: var(--terra);
+  background: #1ebe5b;
   transform: translateY(-2px);
 }
 .wa-float svg {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   fill: currentColor;
 }
 
