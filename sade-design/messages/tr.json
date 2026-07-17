@@ -14,7 +14,7 @@
     "cta": "Ücretsiz Keşif"
   },
   "hero": {
-    "kicker": "KESİT 01 — YAŞAM ALANI",
+    "kicker": "YAŞAM ALANI",
     "wordmark": "SADE",
     "subtitle": "DESIGN · İÇ MİMARLIK & TASARIM",
     "tagline": "Her zevke usta bir dokunuş.",
@@ -23,7 +23,7 @@
     "ctaSecondary": "Projelerimizi İnceleyin"
   },
   "services": {
-    "kicker": "KESİT 02 — HİZMETLER",
+    "kicker": "HİZMETLER",
     "title": "Neler Yapıyoruz",
     "items": [
       {
@@ -45,7 +45,7 @@
     ]
   },
   "process": {
-    "kicker": "KESİT 03 — SÜREÇ",
+    "kicker": "SÜREÇ",
     "title": "Tek Çizgide Beş Durak",
     "steps": [
       { "no": "01", "title": "Keşif", "desc": "Mekânı yerinde görür, ölçer, dinleriz. Bu görüşme ücretsizdir." },
@@ -56,7 +56,7 @@
     ]
   },
   "trust": {
-    "kicker": "KESİT 04 — GÜVEN",
+    "kicker": "GÜVEN",
     "title": "Rakamlarla Sade Design",
     "stats": [
       { "value": "40+", "label": "Tamamlanan Proje" },
@@ -66,7 +66,7 @@
     ]
   },
   "gallery": {
-    "kicker": "KESİT 05 — SEÇİLMİŞ İŞLER",
+    "kicker": "SEÇİLMİŞ İŞLER",
     "title": "Projeler",
     "categories": {
       "all": "Tümü",
@@ -80,7 +80,7 @@
     "emptyState": "Bu kategoride yakında yeni projeler paylaşılacak."
   },
   "about": {
-    "kicker": "KESİT 06 — HAKKIMIZDA",
+    "kicker": "HAKKIMIZDA",
     "title": "Stüdyo",
     "paragraphs": [
       "Sade Design, iyi bir mekânın kalabalıkla değil, doğru kararlarla kurulduğuna inanan bir iç mimarlık stüdyosudur. Her projeye aynı soruyla başlarız: Burada gerçekten neye ihtiyaç var?",
@@ -94,13 +94,13 @@
     ]
   },
   "testimonials": {
-    "kicker": "KESİT 07 — REFERANSLAR",
+    "kicker": "REFERANSLAR",
     "title": "Müşterilerimiz Anlatıyor",
     "googleCta": "Google'da yorumlarımızı görün",
     "emptyState": "Referanslarımız yakında burada."
   },
   "faq": {
-    "kicker": "KESİT 08 — SSS",
+    "kicker": "SSS",
     "title": "Sık Sorulan Sorular",
     "items": [
       {
@@ -126,7 +126,7 @@
     ]
   },
   "contact": {
-    "kicker": "KESİT 09 — İLETİŞİM",
+    "kicker": "İLETİŞİM",
     "title": "Konuşalım",
     "directTitle": "Doğrudan Ulaşın",
     "phoneLabel": "Telefon",

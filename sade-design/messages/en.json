@@ -14,7 +14,7 @@
     "cta": "Free Consultation"
   },
   "hero": {
-    "kicker": "SECTION 01 — LIVING SPACE",
+    "kicker": "LIVING SPACE",
     "wordmark": "SADE",
     "subtitle": "STUDIO · INTERIOR ARCHITECTURE & DESIGN",
     "tagline": "A masterful touch for every taste.",
@@ -23,7 +23,7 @@
     "ctaSecondary": "See Our Projects"
   },
   "services": {
-    "kicker": "SECTION 02 — SERVICES",
+    "kicker": "SERVICES",
     "title": "What We Do",
     "items": [
       {
@@ -45,7 +45,7 @@
     ]
   },
   "process": {
-    "kicker": "SECTION 03 — PROCESS",
+    "kicker": "PROCESS",
     "title": "Five Stops, One Line",
     "steps": [
       { "no": "01", "title": "Discovery", "desc": "We visit, measure and listen. This visit is always free." },
@@ -56,7 +56,7 @@
     ]
   },
   "trust": {
-    "kicker": "SECTION 04 — TRUST",
+    "kicker": "TRUST",
     "title": "Sade Design in Numbers",
     "stats": [
       { "value": "40+", "label": "Completed Projects" },
@@ -66,7 +66,7 @@
     ]
   },
   "gallery": {
-    "kicker": "SECTION 05 — SELECTED WORK",
+    "kicker": "SELECTED WORK",
     "title": "Projects",
     "categories": {
       "all": "All",
@@ -80,7 +80,7 @@
     "emptyState": "New projects in this category are coming soon."
   },
   "about": {
-    "kicker": "SECTION 06 — ABOUT",
+    "kicker": "ABOUT",
     "title": "The Studio",
     "paragraphs": [
       "Sade Design is an interior architecture studio that believes a good space is built with the right decisions, not with clutter. We start every project with the same question: what is actually needed here?",
@@ -94,13 +94,13 @@
     ]
   },
   "testimonials": {
-    "kicker": "SECTION 07 — TESTIMONIALS",
+    "kicker": "TESTIMONIALS",
     "title": "What Our Clients Say",
     "googleCta": "See our reviews on Google",
     "emptyState": "Our testimonials are coming soon."
   },
   "faq": {
-    "kicker": "SECTION 08 — FAQ",
+    "kicker": "FAQ",
     "title": "Frequently Asked Questions",
     "items": [
       {
@@ -126,7 +126,7 @@
     ]
   },
   "contact": {
-    "kicker": "SECTION 09 — CONTACT",
+    "kicker": "CONTACT",
     "title": "Let's Talk",
     "directTitle": "Reach Us Directly",
     "phoneLabel": "Phone",
