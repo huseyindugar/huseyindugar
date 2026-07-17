@@ -400,17 +400,26 @@ section {
   margin-bottom: 64px;
 }
 
-/* lets alternating section headers hug the left/right edge of a band
-   wider than the centered content column, instead of every title
-   stacking in the same spot down the page */
-.head-band {
+/* lets a whole section (title + its content, at their existing,
+   uncompressed width) hug the left or right edge of a band wider than
+   the centered content column, alternating per section instead of
+   every section stacking dead-center down the page. Sections whose
+   content wants full width to breathe (timeline, gallery, contact
+   form) simply don't use this and stay centered as before. */
+.content-band {
+  display: flex;
   max-width: 1400px;
   margin: 0 auto;
-  display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+}
+.content-band > .wrap {
+  margin: 0;
 }
 @media (min-width: 1300px) {
-  .head-band.edge-right {
+  .content-band.edge-left {
+    justify-content: flex-start;
+  }
+  .content-band.edge-right {
     justify-content: flex-end;
   }
 }

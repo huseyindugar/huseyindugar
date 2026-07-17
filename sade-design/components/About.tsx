@@ -8,31 +8,31 @@ export default function About() {
 
   return (
     <section id="hakkimizda" className="deep">
-      <div className="head-band edge-left">
-        <Reveal className="kesit-head tight">
-          <div className="label">{t("kicker")}</div>
-          <h2 className="kesit-title">{t("title")}</h2>
-        </Reveal>
-      </div>
-      <div className="wrap">
-        <div className="about-grid">
-          <Reveal>
-            {paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+      <div className="content-band edge-left">
+        <div className="wrap">
+          <Reveal className="kesit-head tight">
+            <div className="label">{t("kicker")}</div>
+            <h2 className="kesit-title">{t("title")}</h2>
           </Reveal>
-          <Reveal className="about-side">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="about-photo" src="/projects/villa-arnavutkoy-salon/1.jpg" alt="" loading="lazy" />
-            <div className="about-facts">
-              {facts.map((fact) => (
-                <div className="fact" key={fact.label}>
-                  <div className="f-label">{fact.label}</div>
-                  <div className="f-val">{fact.value}</div>
-                </div>
+          <div className="about-grid">
+            <Reveal>
+              {paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
               ))}
-            </div>
-          </Reveal>
+            </Reveal>
+            <Reveal className="about-side">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="about-photo" src="/projects/villa-arnavutkoy-salon/1.jpg" alt="" loading="lazy" />
+              <div className="about-facts">
+                {facts.map((fact) => (
+                  <div className="fact" key={fact.label}>
+                    <div className="f-label">{fact.label}</div>
+                    <div className="f-val">{fact.value}</div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

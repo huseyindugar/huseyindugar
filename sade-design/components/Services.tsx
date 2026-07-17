@@ -43,28 +43,28 @@ export default function Services() {
 
   return (
     <section id="hizmetler">
-      <div className="head-band edge-left">
-        <Reveal className="kesit-head">
-          <div className="label">{t("kicker")}</div>
-          <h2 className="kesit-title">{t("title")}</h2>
-          <div className="datum" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
+      <div className="content-band edge-left">
+        <div className="wrap">
+          <Reveal className="kesit-head">
+            <div className="label">{t("kicker")}</div>
+            <h2 className="kesit-title">{t("title")}</h2>
+            <div className="datum" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+          </Reveal>
+          <div className="svc-grid">
+            {items.map((item, i) => (
+              <Reveal key={item.title} className="svc">
+                <div className="s-glyph">{glyphs[i]}</div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </Reveal>
+            ))}
           </div>
-        </Reveal>
-      </div>
-      <div className="wrap">
-        <div className="svc-grid">
-          {items.map((item, i) => (
-            <Reveal key={item.title} className="svc">
-              <div className="s-glyph">{glyphs[i]}</div>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-            </Reveal>
-          ))}
         </div>
       </div>
     </section>

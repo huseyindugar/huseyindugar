@@ -7,30 +7,30 @@ export default function TrustStats() {
 
   return (
     <section id="guven">
-      <div className="head-band edge-left">
-        <Reveal className="kesit-head">
-          <div className="label">{t("kicker")}</div>
-          <h2 className="kesit-title">{t("title")}</h2>
-          <div className="datum" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-        </Reveal>
-      </div>
-      <div className="wrap">
-        <Reveal>
-          <div className="stats-grid">
-            {stats.map((stat) => (
-              <div className="stat" key={stat.label}>
-                <div className="stat-val">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+      <div className="content-band edge-right">
+        <div className="wrap">
+          <Reveal className="kesit-head">
+            <div className="label">{t("kicker")}</div>
+            <h2 className="kesit-title">{t("title")}</h2>
+            <div className="datum" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="stats-grid">
+              {stats.map((stat) => (
+                <div className="stat" key={stat.label}>
+                  <div className="stat-val">{stat.value}</div>
+                  <div className="stat-label">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
