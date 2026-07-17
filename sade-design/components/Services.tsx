@@ -43,7 +43,7 @@ export default function Services() {
 
   return (
     <section id="hizmetler">
-      <div className="wrap">
+      <div className="head-band edge-left">
         <Reveal className="kesit-head">
           <div className="label">{t("kicker")}</div>
           <h2 className="kesit-title">{t("title")}</h2>
@@ -55,6 +55,8 @@ export default function Services() {
             <span />
           </div>
         </Reveal>
+      </div>
+      <div className="wrap">
         <div className="svc-grid">
           {items.map((item, i) => (
             <Reveal key={item.title} className="svc">

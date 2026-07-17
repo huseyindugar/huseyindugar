@@ -8,11 +8,13 @@ export default function About() {
 
   return (
     <section id="hakkimizda" className="deep">
-      <div className="wrap">
+      <div className="head-band edge-left">
         <Reveal className="kesit-head tight">
           <div className="label">{t("kicker")}</div>
           <h2 className="kesit-title">{t("title")}</h2>
         </Reveal>
+      </div>
+      <div className="wrap">
         <div className="about-grid">
           <Reveal>
             {paragraphs.map((p, i) => (

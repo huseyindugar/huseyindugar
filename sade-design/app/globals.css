@@ -399,6 +399,21 @@ section {
 .kesit-head {
   margin-bottom: 64px;
 }
+
+/* lets alternating section headers hug the left/right edge of a band
+   wider than the centered content column, instead of every title
+   stacking in the same spot down the page */
+.head-band {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+}
+@media (min-width: 1300px) {
+  .head-band.edge-right {
+    justify-content: flex-end;
+  }
+}
 .deep {
   background: var(--ecru-deep);
 }

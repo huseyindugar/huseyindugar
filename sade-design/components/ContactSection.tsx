@@ -8,7 +8,7 @@ export default async function ContactSection() {
 
   return (
     <section id="iletisim" className="deep">
-      <div className="wrap">
+      <div className="head-band edge-right">
         <Reveal className="kesit-head tight">
           <div className="label">{t("kicker")}</div>
           <h2 className="kesit-title">{t("title")}</h2>
@@ -20,7 +20,8 @@ export default async function ContactSection() {
             <span />
           </div>
         </Reveal>
-
+      </div>
+      <div className="wrap">
         <div className="contact-grid">
           <Reveal>
             <h3 style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "22px", marginBottom: "28px" }}>

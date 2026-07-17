@@ -7,7 +7,7 @@ export default function Process() {
 
   return (
     <section id="surec" className="deep">
-      <div className="wrap">
+      <div className="head-band edge-right">
         <Reveal className="kesit-head">
           <div className="label">{t("kicker")}</div>
           <h2 className="kesit-title">{t("title")}</h2>
@@ -19,6 +19,8 @@ export default function Process() {
             <span />
           </div>
         </Reveal>
+      </div>
+      <div className="wrap">
         <Reveal>
           <div className="steps">
             {steps.map((step) => (

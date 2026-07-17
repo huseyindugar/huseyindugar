@@ -11,7 +11,7 @@ export default function FAQ() {
 
   return (
     <section id="faq">
-      <div className="wrap">
+      <div className="head-band edge-left">
         <Reveal className="kesit-head tight">
           <div className="label">{t("kicker")}</div>
           <h2 className="kesit-title">{t("title")}</h2>
@@ -23,6 +23,8 @@ export default function FAQ() {
             <span />
           </div>
         </Reveal>
+      </div>
+      <div className="wrap">
         <Reveal>
           <div className="faq-list">
             {items.map((item, i) => (

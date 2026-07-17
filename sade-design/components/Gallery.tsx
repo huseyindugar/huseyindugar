@@ -9,7 +9,7 @@ export default async function Gallery() {
 
   return (
     <section id="projeler">
-      <div className="wrap">
+      <div className="head-band edge-right">
         <Reveal className="kesit-head">
           <div className="label">{t("kicker")}</div>
           <h2 className="kesit-title">{t("title")}</h2>
@@ -21,6 +21,8 @@ export default async function Gallery() {
             <span />
           </div>
         </Reveal>
+      </div>
+      <div className="wrap">
         <Reveal>
           <GalleryGrid projects={projects} />
         </Reveal>

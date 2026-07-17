@@ -10,7 +10,7 @@ export default async function Testimonials() {
 
   return (
     <section id="referanslar" className="deep">
-      <div className="wrap">
+      <div className="head-band edge-right">
         <Reveal className="kesit-head tight">
           <div className="label">{t("kicker")}</div>
           <h2 className="kesit-title">{t("title")}</h2>
@@ -22,7 +22,8 @@ export default async function Testimonials() {
             <span />
           </div>
         </Reveal>
-
+      </div>
+      <div className="wrap">
         {testimonials.length === 0 ? (
           <p className="empty-note">{t("emptyState")}</p>
         ) : (
