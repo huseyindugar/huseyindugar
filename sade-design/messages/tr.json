@@ -22,6 +22,9 @@
     "ctaPrimary": "Ücretsiz Keşif & Ön Görüşme",
     "ctaSecondary": "Projelerimizi İnceleyin"
   },
+  "photoStrip": {
+    "caption": "Gerçek projelerimizden"
+  },
   "services": {
     "kicker": "HİZMETLER",
     "title": "Neler Yapıyoruz",

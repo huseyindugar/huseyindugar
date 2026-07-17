@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import Hero from "@/components/Hero";
+import PhotoStrip from "@/components/PhotoStrip";
 import Services from "@/components/Services";
 import Process from "@/components/Process";
 import TrustStats from "@/components/TrustStats";
@@ -20,6 +21,7 @@ export default async function HomePage({
   return (
     <>
       <Hero />
+      <PhotoStrip />
       <Services />
       <Process />
       <TrustStats />

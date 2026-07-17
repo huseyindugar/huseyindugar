@@ -9,7 +9,7 @@ export default async function ContactSection() {
   return (
     <section id="iletisim" className="deep">
       <div className="wrap">
-        <Reveal className="kesit-head">
+        <Reveal className="kesit-head tight">
           <div className="label">{t("kicker")}</div>
           <h2 className="kesit-title">{t("title")}</h2>
           <div className="datum" aria-hidden="true">

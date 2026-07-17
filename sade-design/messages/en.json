@@ -22,6 +22,9 @@
     "ctaPrimary": "Free Consultation Visit",
     "ctaSecondary": "See Our Projects"
   },
+  "photoStrip": {
+    "caption": "From our real projects"
+  },
   "services": {
     "kicker": "SERVICES",
     "title": "What We Do",

@@ -9,16 +9,9 @@ export default function About() {
   return (
     <section id="hakkimizda" className="deep">
       <div className="wrap">
-        <Reveal className="kesit-head">
+        <Reveal className="kesit-head tight">
           <div className="label">{t("kicker")}</div>
           <h2 className="kesit-title">{t("title")}</h2>
-          <div className="datum" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
         </Reveal>
         <div className="about-grid">
           <Reveal>
@@ -27,12 +20,16 @@ export default function About() {
             ))}
           </Reveal>
           <Reveal className="about-side">
-            {facts.map((fact) => (
-              <div className="fact" key={fact.label}>
-                <div className="f-label">{fact.label}</div>
-                <div className="f-val">{fact.value}</div>
-              </div>
-            ))}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="about-photo" src="/projects/villa-arnavutkoy-salon/1.jpg" alt="" loading="lazy" />
+            <div className="about-facts">
+              {facts.map((fact) => (
+                <div className="fact" key={fact.label}>
+                  <div className="f-label">{fact.label}</div>
+                  <div className="f-val">{fact.value}</div>
+                </div>
+              ))}
+            </div>
           </Reveal>
         </div>
       </div>
