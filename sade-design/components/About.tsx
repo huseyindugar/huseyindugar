@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import Reveal from "./Reveal";
+import SideArt from "./SideArt";
 
 export default function About() {
   const t = useTranslations("about");
@@ -11,7 +12,6 @@ export default function About() {
       <div className="content-band edge-left">
         <div className="wrap">
           <Reveal className="kesit-head tight">
-            <div className="label">{t("kicker")}</div>
             <h2 className="kesit-title">{t("title")}</h2>
           </Reveal>
           <div className="about-grid">
@@ -34,6 +34,7 @@ export default function About() {
             </Reveal>
           </div>
         </div>
+        <SideArt variant="desk" />
       </div>
     </section>
   );

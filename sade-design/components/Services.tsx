@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import Reveal from "./Reveal";
+import SideArt from "./SideArt";
 
 const glyphs = [
   // floor plan with dimension line + door swing — İç Mimari Proje
@@ -72,6 +73,7 @@ export default function Services() {
             ))}
           </div>
         </div>
+        <SideArt variant="drafting" />
       </div>
     </section>
   );

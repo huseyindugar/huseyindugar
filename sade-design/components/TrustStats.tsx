@@ -1,5 +1,6 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import Reveal from "./Reveal";
+import SideArt from "./SideArt";
 import { getSiteSettings } from "@/sanity/lib/queries";
 
 export default async function TrustStats() {
@@ -18,6 +19,7 @@ export default async function TrustStats() {
   return (
     <section id="guven">
       <div className="content-band edge-right">
+        <SideArt variant="vignette" />
         <div className="wrap">
           <Reveal className="kesit-head">
             <div className="label">{t("kicker")}</div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Reveal from "./Reveal";
+import SideArt from "./SideArt";
 
 export default function FAQ() {
   const t = useTranslations("faq");
@@ -14,15 +15,7 @@ export default function FAQ() {
       <div className="content-band edge-left">
         <div className="wrap">
           <Reveal className="kesit-head tight">
-            <div className="label">{t("kicker")}</div>
             <h2 className="kesit-title">{t("title")}</h2>
-            <div className="datum" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
           </Reveal>
           <Reveal>
             <div className="faq-list">
@@ -44,6 +37,7 @@ export default function FAQ() {
             </div>
           </Reveal>
         </div>
+        <SideArt variant="lamps" />
       </div>
     </section>
   );

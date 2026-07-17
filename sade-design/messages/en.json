@@ -104,7 +104,7 @@
   },
   "faq": {
     "kicker": "FAQ",
-    "title": "Frequently Asked Questions",
+    "title": "FAQ",
     "items": [
       {
         "q": "Is the discovery visit really free?",
@@ -130,7 +130,7 @@
   },
   "contact": {
     "kicker": "CONTACT",
-    "title": "Let's Talk",
+    "title": "Contact",
     "directTitle": "Reach Us Directly",
     "phoneLabel": "Phone",
     "emailLabel": "Email",

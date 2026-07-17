@@ -104,7 +104,7 @@
   },
   "faq": {
     "kicker": "SSS",
-    "title": "Sık Sorulan Sorular",
+    "title": "SSS",
     "items": [
       {
         "q": "Keşif görüşmesi gerçekten ücretsiz mi?",
@@ -130,7 +130,7 @@
   },
   "contact": {
     "kicker": "İLETİŞİM",
-    "title": "Konuşalım",
+    "title": "İletişim",
     "directTitle": "Doğrudan Ulaşın",
     "phoneLabel": "Telefon",
     "emailLabel": "E-posta",
