@@ -49,7 +49,7 @@
   },
   "process": {
     "kicker": "SÜREÇ",
-    "title": "Tek Çizgide Beş Durak",
+    "title": "Sürecin Her Adımı Bizde",
     "steps": [
       { "no": "01", "title": "Keşif", "desc": "Mekânı yerinde görür, ölçer, dinleriz. Bu görüşme ücretsizdir." },
       { "no": "02", "title": "Konsept & Moodboard", "desc": "İhtiyaç ve zevkinize göre malzeme ve konsept önerisi hazırlarız." },
