@@ -11,7 +11,6 @@ const sections = [
   ["gallery", "projeler"],
   ["process", "surec"],
   ["about", "hakkimizda"],
-  ["testimonials", "referanslar"],
   ["faq", "faq"],
   ["contact", "iletisim"],
 ] as const;

@@ -6,7 +6,6 @@ import Process from "@/components/Process";
 import TrustStats from "@/components/TrustStats";
 import Gallery from "@/components/Gallery";
 import About from "@/components/About";
-import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import ContactSection from "@/components/ContactSection";
 
@@ -27,7 +26,6 @@ export default async function HomePage({
       <TrustStats />
       <Gallery />
       <About />
-      <Testimonials />
       <FAQ />
       <ContactSection />
     </>

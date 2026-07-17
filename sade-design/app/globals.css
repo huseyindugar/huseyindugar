@@ -625,29 +625,13 @@ section {
 .svc:hover {
   background: var(--ecru-deep);
 }
-.svc .s-glyph {
-  height: 54px;
+.svc .s-photo {
+  width: 76px;
+  height: 76px;
+  object-fit: cover;
+  display: block;
   margin-bottom: 26px;
-}
-.svc .s-glyph svg {
-  height: 100%;
-  width: auto;
-  overflow: visible;
-}
-.svc .s-glyph path,
-.svc .s-glyph line,
-.svc .s-glyph circle,
-.svc .s-glyph rect,
-.svc .s-glyph ellipse {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 1;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.svc .s-glyph .em {
-  fill: var(--terra);
-  stroke: none;
+  border: 1px solid var(--ink-15);
 }
 .svc h3 {
   font-family: var(--sans);
@@ -751,7 +735,23 @@ section {
 }
 
 /* ---------- trust stats ---------- */
+.stats-band {
+  position: relative;
+  padding: 64px 44px;
+  overflow: hidden;
+}
+.stats-band .stats-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.32) saturate(0.9);
+  z-index: 0;
+}
 .stats-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 40px;
@@ -769,10 +769,13 @@ section {
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ink-60);
+  color: rgba(244, 239, 229, 0.8);
   margin-top: 10px;
 }
 @media (max-width: 820px) {
+  .stats-band {
+    padding: 48px 24px;
+  }
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 36px;

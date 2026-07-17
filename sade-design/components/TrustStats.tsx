@@ -21,13 +21,17 @@ export default function TrustStats() {
             </div>
           </Reveal>
           <Reveal>
-            <div className="stats-grid">
-              {stats.map((stat) => (
-                <div className="stat" key={stat.label}>
-                  <div className="stat-val">{stat.value}</div>
-                  <div className="stat-label">{stat.label}</div>
-                </div>
-              ))}
+            <div className="stats-band">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="stats-bg" src="/projects/villa-tuzla-teras/1.jpg" alt="" loading="lazy" />
+              <div className="stats-grid">
+                {stats.map((stat) => (
+                  <div className="stat" key={stat.label}>
+                    <div className="stat-val">{stat.value}</div>
+                    <div className="stat-label">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
