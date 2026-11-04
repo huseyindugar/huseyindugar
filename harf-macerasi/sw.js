@@ -1,5 +1,5 @@
 // Çevrimdışı çalışma: dosyaları önbelleğe alır (yalnızca https veya localhost üzerinde etkin).
-const CACHE = 'harf-macerasi-v2';
+const CACHE = 'harf-macerasi-v3';
 const FILES = ['./', 'index.html', 'css/style.css', 'js/data.js', 'js/app.js', 'manifest.webmanifest', 'icons/icon-180.png', 'icons/icon-512.png'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener('activate', (e) => {

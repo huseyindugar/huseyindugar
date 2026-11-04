@@ -38,7 +38,7 @@
   // ---------- storage ----------
   const KEY = 'harfMacerasi.v1';
   const defaults = () => ({
-    settings: { en: { upTo: 'F', voice: '' }, tr: { upTo: 'F', voice: '' }, rate: 0.85, bilingual: true },
+    settings: { en: { upTo: 'F', voice: '' }, tr: { upTo: 'F', voice: '' }, rate: 0.7, bilingual: true, v: 2 },
     stats: { en: {}, tr: {} },
     stickers: { en: [], tr: [] },
   });
@@ -55,6 +55,7 @@
     return d;
   };
   let state = load();
+  if ((state.settings.v || 1) < 2) { state.settings.rate = 0.7; state.settings.v = 2; }
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* ignore */ } };
   const stat = (lang, L) => (state.stats[lang][L.u] ||= { c: 0, w: 0, modes: [] });
   const upToIndex = (lang) => Math.max(0, LANGS[lang].letters.findIndex((L) => L.u === state.settings[lang].upTo));
@@ -81,21 +82,34 @@
         (pref.some((n) => v.name.includes(n)) ? 2 : 0) + (v.localService ? 1 : 0);
       return [...vs].sort((a, b) => score(b) - score(a))[0] || null;
     },
-    say(text, lang) {
-      if (!this.ok) return wait(500);
+    // Metni "|" işaretlerinden parçalara bölüp tane tane, aralarda kısa duraklarla okur.
+    // Tek harflik / çok kısa parçalar (harfin kendisi) daha da yavaş okunur.
+    async say(text, lang) {
       const my = ++this.token;
+      if (!this.ok) { await wait(500); return my === this.token; }
       speechSynthesis.cancel();
+      const parts = String(text).split('|').map((x) => x.trim()).filter(Boolean);
+      for (let i = 0; i < parts.length; i++) {
+        if (my !== this.token) return false;
+        if (i > 0) { await wait(380); if (my !== this.token) return false; }
+        const bare = parts[i].replace(/[.!?,]/g, '').trim();
+        const slow = bare.length <= 2 || LANGS[lang].letters.some((L) => L.name === bare);
+        await this.speakOne(parts[i], lang, slow ? 0.8 : 1, my);
+      }
+      return my === this.token;
+    },
+    speakOne(text, lang, factor, my) {
       return new Promise((res) => {
         const u = new SpeechSynthesisUtterance(text);
         u.lang = LANGS[lang].speech;
         const v = this.choose(lang);
         if (v) u.voice = v;
-        u.rate = state.settings.rate;
-        u.pitch = 1.1;
+        u.rate = Math.max(0.3, state.settings.rate * factor);
+        u.pitch = 1.05;
         let done = false;
-        const fin = () => { if (!done) { done = true; clearTimeout(t); res(my === this.token); } };
+        const fin = () => { if (!done) { done = true; clearTimeout(t); res(); } };
         u.onend = fin; u.onerror = fin;
-        const t = setTimeout(fin, 2500 + text.length * 110);
+        const t = setTimeout(fin, 3000 + text.length * 160);
         setTimeout(() => { if (my === this.token) speechSynthesis.speak(u); else fin(); }, 40);
       });
     },
@@ -182,7 +196,7 @@
     const box = h('div', { class: 'super-pop' }, st);
     fx.append(box);
     Sfx.win(); confetti(25);
-    await Promise.all([sayBoth(lang, `${LANGS[lang].phrases.superSticker} ${info.w}!`, info.o), wait(2200)]);
+    await Promise.all([sayBoth(lang, `${LANGS[lang].phrases.superSticker} | ${info.w}!`, info.o), wait(2200)]);
     await wait(250);
     giveSticker(lang, e, st);
     box.remove();
@@ -374,7 +388,7 @@
         }
         save();
         speakBtn.classList.add('talking');
-        await Promise.all([sayBoth(lang, `${pick(P.praise)} ${P.isFor(L, word)}`, o), wait(1400)]);
+        await Promise.all([sayBoth(lang, `${pick(P.praise)} | ${P.isFor(L, word)}`, o), wait(1400)]);
         speakBtn.classList.remove('talking');
         if (!btn.isConnected) return;
         if (superNow) await superSticker(lang);
@@ -495,7 +509,7 @@
           const pic = a.c.kind === 'pic' ? a : b;
           stat(lang, a.c.L).c++; save();
           giveSticker(lang, pic.c.e, pic.el);
-          await sayBoth(lang, `${pick(P.praise)} ${P.isFor(a.c.L, pic.c.w)}`, pic.c.o);
+          await sayBoth(lang, `${pick(P.praise)} | ${P.isFor(a.c.L, pic.c.w)}`, pic.c.o);
           matched++;
           busy = false;
           if (el.isConnected && matched === set.length) { await wait(300); reward(lang, L, 'memory', () => memory(lang, L)); }
@@ -532,7 +546,7 @@
       ),
     ));
     Sfx.win(); confetti();
-    sayBoth(lang, `${pick(P.done)} ${sw}!`, so);
+    sayBoth(lang, `${pick(P.done)} | ${sw}!`, so);
   }
 
   // ---------- ALBUM ----------
@@ -578,8 +592,11 @@
       const bi = h('input', { type: 'checkbox', checked: state.settings.bilingual });
       bi.addEventListener('change', () => { state.settings.bilingual = bi.checked; save(); });
 
-      const rate = h('input', { type: 'range', min: '0.6', max: '1.1', step: '0.05', value: String(state.settings.rate) });
-      rate.addEventListener('change', () => { state.settings.rate = parseFloat(rate.value); save(); });
+      const rate = h('input', { type: 'range', min: '0.4', max: '1', step: '0.05', value: String(state.settings.rate) });
+      rate.addEventListener('change', () => {
+        state.settings.rate = parseFloat(rate.value); save();
+        Speech.say(LANGS[lang].phrases.isFor(letters[0], letters[0].words[0][0]), lang);
+      });
 
       const rows = letters.map((L) => {
         const s = state.stats[lang][L.u] || { c: 0, w: 0, modes: [] };
@@ -599,7 +616,7 @@
         h('div', { class: 'panel' },
           h('h2', {}, 'Ses'),
           h('label', {}, 'Ses:', voiceSel, h('button', { class: 'small-btn', onclick: () => Speech.say(LANGS[lang].phrases.letterIntro(letters[0], letters[0].words[0][0]), lang) }, '▶︎ Dene')),
-          h('label', {}, 'Konuşma hızı:', rate),
+          h('label', {}, '🐢 Konuşma hızı 🐇', rate),
           h('label', {}, bi, 'Kelimeyi diğer dilde de söyle (Bear → Ayı)'),
           h('p', { class: 'hint' }, 'Daha doğal ses için iPad\'de: Ayarlar → Erişilebilirlik → Seslendirilen İçerik → Sesler. İngilizce (ABD) için örneğin "Samantha (Gelişmiş)" ya da "Ava (Premium)", Türkçe için "Yelda (Gelişmiş)" sesini indirin. Sonra bu sayfayı yeniden açıp seçin.')),
         h('div', { class: 'panel' },
