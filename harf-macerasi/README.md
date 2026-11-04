@@ -11,7 +11,14 @@
 | 🃏 | Hafıza | Harf ve resim kartlarını eşleştirir |
 | ▶️🎲 | Karışık | Kreşte öğrenilen harflerden uyarlanabilir 8 soru sorar, zorlandığı harfler daha sık gelir |
 
-Her oyunun sonunda bir çıkartma kazanılır (📒 albüm).
+## Çıkartmalar 📒
+- İlk denemede bilinen her cevapta o kelimenin resmi çıkartma olur ve albüme uçar.
+- Üst üste 3 doğru cevapta parlak bir **süper çıkartma** gelir (👑 💎 🦖 🚒 …).
+- Her oyunun sonunda bir büyük ödül çıkartması verilir.
+- Haritada sağ üstteki 📒 sayacına basınca albüm açılır. Albümde çıkartmaya basınca adı iki dilde söylenir.
+
+## İki dil birlikte
+Resme basınca kelime önce oynanan dilde, sonra diğer dilde söylenir ("B is for Bear!" … "Ayı"). Kartın altında diğer dildeki adı da yazar. Ebeveyn panelinden kapatılabilir.
 
 ## Ebeveyn paneli
 Ana ekranın sağ altındaki 🔒 simgesine **1,5 saniye basılı tutun**. Panelde şunlar var:

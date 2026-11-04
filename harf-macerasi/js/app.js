@@ -25,11 +25,20 @@
   const matches = (word, L, lang) => { const w = lower(word, lang); return L.contains ? w.includes(L.l) : w.startsWith(L.l); };
   const colorOf = (lang, L) => 'c' + (LANGS[lang].letters.indexOf(L) % 7);
   const letterFace = (L, cls = 'letter-face') => h('span', { class: cls }, L.u, h('small', {}, L.l));
+  const otherLang = (lang) => (lang === 'en' ? 'tr' : 'en');
+  const isSuper = (e) => SUPER_STICKERS.some((x) => x[0] === e);
+  // Bir çıkartmanın (emoji) bu dildeki ve diğer dildeki adı
+  const stickerInfo = (lang, e) => {
+    for (const L of LANGS[lang].letters) for (const [w, em, o] of L.words) if (em === e) return { w, o };
+    const sp = SUPER_STICKERS.find((x) => x[0] === e);
+    if (sp) return lang === 'en' ? { w: sp[1], o: sp[2] } : { w: sp[2], o: sp[1] };
+    return { w: '', o: '' };
+  };
 
   // ---------- storage ----------
   const KEY = 'harfMacerasi.v1';
   const defaults = () => ({
-    settings: { en: { upTo: 'F', voice: '' }, tr: { upTo: 'F', voice: '' }, rate: 0.85 },
+    settings: { en: { upTo: 'F', voice: '' }, tr: { upTo: 'F', voice: '' }, rate: 0.85, bilingual: true },
     stats: { en: {}, tr: {} },
     stickers: { en: [], tr: [] },
   });
@@ -92,6 +101,15 @@
     },
     stop() { this.token++; if (this.ok) speechSynthesis.cancel(); },
   };
+  // Önce oynanan dilde söyler, ardından kelimeyi diğer dilde söyler ("Bear!" … "Ayı").
+  async function sayBoth(lang, text, otherWord) {
+    const ok = await Speech.say(text, lang);
+    if (!ok || !otherWord || !state.settings.bilingual) return ok;
+    const t = Speech.token;
+    await wait(200);
+    if (Speech.token !== t) return false;
+    return Speech.say(otherWord, otherLang(lang));
+  }
   if (Speech.ok) { speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices(); }
 
   // ---------- sound effects (generated, no files) ----------
@@ -130,6 +148,46 @@
     }
   };
 
+  // ---------- stickers ----------
+  const updateCounter = (lang) => {
+    const c = app.querySelector('.star-count');
+    if (!c) return;
+    c.querySelector('.count').textContent = String(state.stickers[lang].length);
+    c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump');
+  };
+  // Çıkartmayı verir ve ekrandaki yerinden albüm sayacına uçurur
+  function giveSticker(lang, emoji, fromEl) {
+    state.stickers[lang].push(emoji);
+    save();
+    const target = app.querySelector('.star-count');
+    const r1 = fromEl.getBoundingClientRect();
+    const r2 = target ? target.getBoundingClientRect() : { left: innerWidth - 80, top: 20, width: 60, height: 40 };
+    const x1 = r1.left + r1.width / 2, y1 = r1.top + r1.height / 2;
+    const dx = r2.left + r2.width / 2 - x1, dy = r2.top + r2.height / 2 - y1;
+    const el = h('div', { class: 'fly-sticker' + (isSuper(emoji) ? ' super' : '') }, emoji);
+    el.style.left = x1 + 'px'; el.style.top = y1 + 'px';
+    fx.append(el);
+    const anim = el.animate([
+      { transform: 'translate(-50%, -50%) scale(.6)', opacity: 1 },
+      { transform: 'translate(-50%, -50%) scale(1.7) rotate(-10deg)', opacity: 1, offset: 0.3 },
+      { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(.4) rotate(20deg)`, opacity: 0.9 },
+    ], { duration: 1200, easing: 'ease-in-out' });
+    anim.onfinish = () => { el.remove(); updateCounter(lang); Sfx.tap(); };
+  }
+  // Üst üste 3 doğruda: ekranın ortasında parlak süper çıkartma
+  async function superSticker(lang) {
+    const [e] = pick(SUPER_STICKERS);
+    const info = stickerInfo(lang, e);
+    const st = h('div', { class: 'super-sticker' }, e);
+    const box = h('div', { class: 'super-pop' }, st);
+    fx.append(box);
+    Sfx.win(); confetti(25);
+    await Promise.all([sayBoth(lang, `${LANGS[lang].phrases.superSticker} ${info.w}!`, info.o), wait(2200)]);
+    await wait(250);
+    giveSticker(lang, e, st);
+    box.remove();
+  }
+
   // ---------- screen plumbing ----------
   const show = (el) => {
     Speech.stop();
@@ -142,7 +200,7 @@
     h('button', { class: 'icon-btn', 'aria-label': 'Ana sayfa', onclick: tap(home) }, '🏠'),
     h('div', { class: 'spacer' }),
     ...extra,
-    lang ? h('div', { class: 'star-count' }, '⭐', String(state.stickers[lang].length)) : null,
+    lang ? h('div', { class: 'star-count' }, '📒', h('span', { class: 'count' }, String(state.stickers[lang].length))) : null,
   );
 
   // ---------- HOME ----------
@@ -179,12 +237,15 @@
       }, h('span', {}, L.u, h('small', {}, L.l)), h('span', { class: 'stars' }, '⭐'.repeat(n)));
     });
     show(h('div', { class: 'screen' },
-      topbar(lang, null, h('button', { class: 'icon-btn', 'aria-label': 'Albüm', onclick: tap(() => album(lang)) }, '📒')),
+      topbar(lang, null),
       h('div', { class: 'map-body' },
         h('button', { class: 'play-mixed', 'aria-label': 'Oyna', onclick: tap(() => mixedPlay(lang)) }, h('span', { class: 'mascot-sm' }, '🦉'), '▶️', '🎲'),
         h('div', { class: 'letter-grid' }, tiles),
       ),
     ));
+    const counter = app.querySelector('.star-count');
+    counter.classList.add('clickable');
+    counter.addEventListener('click', tap(() => album(lang)));
     const cur = app.querySelector('.letter-tile.current');
     if (cur) cur.scrollIntoView({ block: 'center' });
     Speech.say(greet ? `${P.welcome} ${P.pickLetter}` : P.pickLetter, lang);
@@ -224,14 +285,14 @@
     const words = shuffle(L.words).slice(0, 8);
     const seen = new Set();
     let finished = false;
-    const cards = words.map(([w, e]) => {
-      const card = h('button', { class: 'meet-card' }, h('span', { class: 'emoji' }, e), wordLabel(w, L, lang));
+    const cards = words.map(([w, e, o]) => {
+      const card = h('button', { class: 'meet-card' }, h('span', { class: 'emoji' }, e), wordLabel(w, L, lang), otherLabel(lang, o));
       card.addEventListener('click', async () => {
         Sfx.tap();
         card.classList.remove('bounce'); void card.offsetWidth; card.classList.add('bounce');
         card.classList.add('seen');
         seen.add(w);
-        const ok = await Speech.say(P.isFor(L, w), lang);
+        const ok = await sayBoth(lang, P.isFor(L, w), o);
         if (ok && card.isConnected && !finished && seen.size === words.length) { finished = true; await wait(300); reward(lang, L, 'meet', () => meet(lang, L)); }
       });
       return card;
@@ -252,9 +313,12 @@
     return span;
   }
 
+  const otherLabel = (lang, o) => (state.settings.bilingual && o
+    ? h('span', { class: 'word2' }, `${LANGS[otherLang(lang)].flag} ${o}`) : null);
+
   // ---------- MODE: ROUNDS (find picture / find letter) ----------
   function pickDistractorWords(lang, L, n) {
-    const pool = shuffle(LANGS[lang].letters.filter((x) => x !== L).flatMap((x) => x.words.map(([w, e]) => ({ w, e, x }))))
+    const pool = shuffle(LANGS[lang].letters.filter((x) => x !== L).flatMap((x) => x.words.map(([w, e, o]) => ({ w, e, o, x }))))
       .filter((o) => !matches(o.w, L, lang));
     const out = []; const usedLetters = new Set();
     for (const o of pool) { if (out.length >= n) break; if (usedLetters.has(o.x)) continue; usedLetters.add(o.x); out.push(o); }
@@ -271,7 +335,7 @@
 
   function rounds(lang, specs, meta) {
     const P = LANGS[lang].phrases;
-    let idx = 0;
+    let idx = 0, streak = 0;
     const wordQueues = new Map();
     const nextWord = (L) => {
       let q = wordQueues.get(L);
@@ -298,19 +362,28 @@
         return r;
       };
 
-      const onCorrect = async (btn, word) => {
+      const onCorrect = async (btn, word, emoji, o) => {
         locked = true;
         Sfx.good();
         btn.classList.add('correct');
-        if (firstTry) s.c++;
+        let superNow = false;
+        if (firstTry) {
+          s.c++; streak++;
+          giveSticker(lang, emoji, btn); // doğru bildikçe çıkartma
+          superNow = streak % 3 === 0;
+        }
         save();
-        await Promise.all([say(`${pick(P.praise)} ${P.isFor(L, word)}`), wait(1400)]);
+        speakBtn.classList.add('talking');
+        await Promise.all([sayBoth(lang, `${pick(P.praise)} ${P.isFor(L, word)}`, o), wait(1400)]);
+        speakBtn.classList.remove('talking');
+        if (!btn.isConnected) return;
+        if (superNow) await superSticker(lang);
         await wait(350);
         if (!btn.isConnected) return; // kullanıcı ekrandan çıktıysa
         idx++; renderRound();
       };
       const onWrong = (btn, text) => {
-        firstTry = false;
+        firstTry = false; streak = 0;
         s.w++; save();
         Sfx.bad();
         btn.classList.add('wrong'); btn.disabled = true;
@@ -318,8 +391,8 @@
       };
 
       if (type === 'find') {
-        const [cw, ce] = nextWord(L);
-        const opts = shuffle([{ w: cw, e: ce, ok: true }, ...pickDistractorWords(lang, L, 2)]);
+        const [cw, ce, co] = nextWord(L);
+        const opts = shuffle([{ w: cw, e: ce, o: co, ok: true }, ...pickDistractorWords(lang, L, 2)]);
         promptText = P.findPrompt(L);
         optionsEl = h('div', { class: 'options' }, opts.map((o) => {
           const label = h('span', { class: 'word' });
@@ -327,7 +400,8 @@
           btn.addEventListener('click', () => {
             if (locked) return;
             label.replaceWith(wordLabel(o.w, o.ok ? L : o.x, lang));
-            if (o.ok) onCorrect(btn, o.w); else onWrong(btn, P.tryAgainWord(o.w));
+            if (o.ok) { const ol = otherLabel(lang, o.o); if (ol) btn.append(ol); }
+            if (o.ok) onCorrect(btn, o.w, o.e, o.o); else onWrong(btn, P.tryAgainWord(o.w));
           });
           return btn;
         }));
@@ -337,14 +411,17 @@
           optionsEl,
         ));
       } else {
-        const [cw] = nextWord(L);
+        const [cw, ce, co] = nextWord(L);
         const opts = shuffle([{ L, ok: true }, ...pickDistractorLetters(lang, L, 2).map((x) => ({ L: x }))]);
         promptText = P.findLetter(L);
         optionsEl = h('div', { class: 'options' }, opts.map((o) => {
           const btn = h('button', { class: 'option', 'aria-label': o.L.u }, letterFace(o.L));
           btn.addEventListener('click', () => {
             if (locked) return;
-            if (o.ok) onCorrect(btn, cw); else onWrong(btn, P.tryAgainLetter(o.L));
+            if (o.ok) {
+              btn.append(h('span', { class: 'word' }, `${ce} ${cw}`)); // harfin örnek kelimesini göster
+              onCorrect(btn, cw, ce, co);
+            } else onWrong(btn, P.tryAgainLetter(o.L));
           });
           return btn;
         }));
@@ -394,8 +471,8 @@
     const others = pickDistractorLetters(lang, L, 2);
     const set = [L, ...others];
     const cards = shuffle(set.flatMap((x) => {
-      const [w, e] = pick(x.words);
-      return [{ L: x, kind: 'letter' }, { L: x, kind: 'pic', w, e }];
+      const [w, e, o] = pick(x.words);
+      return [{ L: x, kind: 'letter' }, { L: x, kind: 'pic', w, e, o }];
     }));
     let open = [], matched = 0, busy = false;
     const els = cards.map((c) => {
@@ -415,9 +492,10 @@
           await wait(500);
           Sfx.good();
           a.el.classList.add('matched'); b.el.classList.add('matched');
-          const pic = a.c.kind === 'pic' ? a.c : b.c;
+          const pic = a.c.kind === 'pic' ? a : b;
           stat(lang, a.c.L).c++; save();
-          await Speech.say(`${pick(P.praise)} ${P.isFor(a.c.L, pic.w)}`, lang);
+          giveSticker(lang, pic.c.e, pic.el);
+          await sayBoth(lang, `${pick(P.praise)} ${P.isFor(a.c.L, pic.c.w)}`, pic.c.o);
           matched++;
           busy = false;
           if (el.isConnected && matched === set.length) { await wait(300); reward(lang, L, 'memory', () => memory(lang, L)); }
@@ -440,13 +518,13 @@
   function reward(lang, L, mode, again) {
     const P = LANGS[lang].phrases;
     const src = L || weightedPick(lang);
-    const sticker = pick(src.words)[1];
+    const [sw, sticker, so] = pick(src.words);
     state.stickers[lang].push(sticker);
     if (L && mode) { const s = stat(lang, L); if (!s.modes.includes(mode)) s.modes.push(mode); }
     save();
     const next = () => (L ? letterHome(lang, L) : letterMap(lang));
     show(h('div', { class: 'screen reward' },
-      h('div', { class: 'sticker' }, sticker),
+      h('button', { class: 'sticker', onclick: () => sayBoth(lang, sw, so) }, sticker),
       h('div', { class: 'reward-stars' }, '⭐⭐⭐'),
       h('div', { class: 'reward-actions' },
         h('button', { 'aria-label': 'Tekrar', onclick: tap(again) }, '🔁'),
@@ -454,15 +532,24 @@
       ),
     ));
     Sfx.win(); confetti();
-    Speech.say(pick(P.done), lang);
+    sayBoth(lang, `${pick(P.done)} ${sw}!`, so);
   }
 
   // ---------- ALBUM ----------
   function album(lang) {
     const counts = new Map();
     state.stickers[lang].forEach((e) => counts.set(e, (counts.get(e) || 0) + 1));
-    const items = [...counts.entries()].map(([e, n]) =>
-      h('div', { class: 'album-item' }, e, n > 1 ? h('b', {}, '×' + n) : null));
+    const entries = [...counts.entries()].sort((a, b) => isSuper(b[0]) - isSuper(a[0]));
+    const items = entries.map(([e, n]) => {
+      const info = stickerInfo(lang, e);
+      const el = h('button', { class: 'album-item' + (isSuper(e) ? ' super' : ''), 'aria-label': info.w },
+        e, n > 1 ? h('b', {}, '×' + n) : null);
+      el.addEventListener('click', () => {
+        el.classList.remove('wiggle'); void el.offsetWidth; el.classList.add('wiggle');
+        sayBoth(lang, info.w, info.o);
+      });
+      return el;
+    });
     show(h('div', { class: 'screen' },
       topbar(lang, () => letterMap(lang)),
       items.length ? h('div', { class: 'album-grid' }, items) : h('div', { class: 'album-empty' }, '📒'),
@@ -488,6 +575,9 @@
           : h('option', {}, 'Bu dilde ses bulunamadı'));
       voiceSel.addEventListener('change', () => { S.voice = voiceSel.value; save(); });
 
+      const bi = h('input', { type: 'checkbox', checked: state.settings.bilingual });
+      bi.addEventListener('change', () => { state.settings.bilingual = bi.checked; save(); });
+
       const rate = h('input', { type: 'range', min: '0.6', max: '1.1', step: '0.05', value: String(state.settings.rate) });
       rate.addEventListener('change', () => { state.settings.rate = parseFloat(rate.value); save(); });
 
@@ -510,6 +600,7 @@
           h('h2', {}, 'Ses'),
           h('label', {}, 'Ses:', voiceSel, h('button', { class: 'small-btn', onclick: () => Speech.say(LANGS[lang].phrases.letterIntro(letters[0], letters[0].words[0][0]), lang) }, '▶︎ Dene')),
           h('label', {}, 'Konuşma hızı:', rate),
+          h('label', {}, bi, 'Kelimeyi diğer dilde de söyle (Bear → Ayı)'),
           h('p', { class: 'hint' }, 'Daha doğal ses için iPad\'de: Ayarlar → Erişilebilirlik → Seslendirilen İçerik → Sesler. İngilizce (ABD) için örneğin "Samantha (Gelişmiş)" ya da "Ava (Premium)", Türkçe için "Yelda (Gelişmiş)" sesini indirin. Sonra bu sayfayı yeniden açıp seçin.')),
         h('div', { class: 'panel' },
           h('h2', {}, 'İlerleme'),
