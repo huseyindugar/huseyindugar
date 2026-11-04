@@ -32,4 +32,4 @@ iPad'de: **Ayarlar → Erişilebilirlik → Seslendirilen İçerik → Sesler**
 - Türkçe: *Yelda (Gelişmiş)*
 
 ## Kelime eklemek
-`js/data.js` dosyasında ilgili harfin `words` listesine `['Kelime', '🙂']` eklemeniz yeterli.
+`js/data.js` dosyasında ilgili harfin `words` listesine `['Kelime', '🙂', 'Diğer dildeki adı']` eklemeniz yeterli.
